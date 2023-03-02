@@ -1,0 +1,344 @@
+/*   random images:      https://source.unsplash.com/random    */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+/* font-family: 'Poppins', sans-serif; */
+/**********************************************
+                Global styles
+**********************************************/
+*,
+::before,
+::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+	--primary-color: #fff;
+	--secondary-color: #000;
+	--background-color: #1751e2;
+}
+
+html {
+  scroll-behavior: smooth; /* Usporava skrol */
+  user-select: none; /* Gasi plavu boju kada se klikce na nesto */
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  min-height: 100%;
+  padding-bottom:60px;
+  background-color: var(--background-color);
+  color: var(--primary-color);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/**********************************************
+                    Layout
+**********************************************/
+h1 {
+  font-size: 1.2rem;
+  margin-left: 5px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 20px 10px;
+}
+header svg {
+  height: 20px;
+}
+#home-btn {
+  cursor: pointer;
+}
+.info-div {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 20px;
+  background-color: var(--secondary-color);
+}
+.info-div-content {
+  position: absolute;
+  top: 70px;
+  left: 50px;
+  right: 50px;
+  padding: 50px 50px 100px;
+  background-color: var(--secondary-color);
+  z-index: 4;
+}
+.infoContentBtn {
+  position: absolute;
+  bottom: 20px;
+  right: 50px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  z-index: 5;
+}
+
+.home-page {
+  display: flex;
+  flex-wrap: wrap;
+  height: calc(133.333vw);
+}
+.home-page .content {
+  cursor: pointer;
+}
+.home-page .content:active {
+  position: relative;
+  top: 2px;
+  left: 2px;
+}
+section {
+  border: 1px solid #fff;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 66.666%;
+}
+
+.field {
+  border: 1px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 50%;
+}
+
+.content svg {
+  display: block;
+  height: 50px;
+  margin: auto;
+}
+.content p {
+  margin-top: 30px;
+  text-align: center;
+}
+
+aside {
+  border: 1px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 33.333%;
+}
+/* New Match */
+.new-match-page {
+  width: 100%;
+  height: 100%;
+}
+#new-match-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.new-match-svg {
+  display: flex;
+  justify-content:space-evenly;
+  gap: 20px;
+}
+.new-match-svg svg {
+  cursor: pointer;
+}
+.new-match-body-header {
+width: 100%;
+min-height: 50px;
+padding: 10px 0;
+border-top: 5px solid var(--secondary-color);
+text-align: center;
+}
+.new-match-body {
+  position: relative;
+  width: 100%;
+  height: 75vh;
+  padding: 10px;
+  background-color: var(--secondary-color);
+}
+#start-match-btn {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  text-align: center;
+  background-color: var(--background-color);
+  cursor: pointer;
+}
+/* Select player */
+.select-player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.select-player-svg {
+  display: flex;
+  justify-content:space-evenly;
+  gap: 20px;
+}
+.select-player-page {
+  width: 100%;
+  height: 100%;
+}
+.select-player-body {
+  position: relative;
+  width: 100%;
+  height: 86.6vh;
+  padding: 10px;
+  background-color: var(--secondary-color);
+}
+/* Add player */
+.add-player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.add-player-svg {
+  display: flex;
+  justify-content:space-evenly;
+  gap: 20px;
+}
+.add-player-page {
+  width: 100%;
+  height: 100%;
+}
+.add-player-body {
+  position: relative;
+  width: 100%;
+  height: 86.6vh;
+  padding: 10px;
+  background-color: var(--secondary-color);
+}
+.add-player-body input {
+  border: none;
+  outline: none;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  font-size: 1rem;
+}
+.add-player-body hr {
+  margin-bottom: 10px;
+}
+.add-player-body .bottomBtn {
+  position: absolute;
+  bottom: 5px;
+  display: block;
+  width: 50%;
+  padding: 10px 0;
+  text-align: center;
+  color: var(--primary-color);
+  background-color: var(--background-color);
+  cursor: pointer;
+}
+.add-player-body #cancelBtn {
+  left: 0;
+}
+.add-player-body #okBtn {
+  right: 0;
+}
+#errBox {
+  color: red;
+}
+/* Start match page*/
+#start-match-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.start-match-svg {
+  display: flex;
+  justify-content:space-evenly;
+  gap: 20px;
+}
+.start-match-page {
+  width: 100%;
+  height: 86.6vh;
+  background-color: var(--secondary-color);
+}
+.start-match-body {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  padding: 10px;
+  background-color: var(--secondary-color);
+}
+.player-box {
+  width: 48%;
+  height: 175px;
+  text-align: center;
+  background-color: #222222;
+}
+.player-name-box {
+  padding: 5px 0;
+  border: 1px solid #ccc;
+  background-color: #141414;
+}
+.legs-box {
+  padding: 5px 0;
+}
+.player-score-box {
+  width: 90%;
+  margin: auto;
+  padding: 5px 0;
+  border: 1px solid #000;
+  border-radius: 10px;
+  background-color: var(--background-color);
+  font-size: 2rem;
+}
+.to-play-box {
+  padding: 5px 0;
+}
+
+
+#myFooter {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+}
+/**********************************************
+                Specific styles
+**********************************************/
+
+/**********************************************
+                Helper classes
+**********************************************/
+.list-reset {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+/*********************************************
+               @media Queries
+*********************************************/
+/* @media print {} */
+
+/* @media all and (min-width: 576px) {
+} */
