@@ -85,7 +85,16 @@ function infoFunction() {
             }
         })
     })
+    
 }
+
+// window.onclick = function (event) {
+//   let infoDiv = document.querySelector('.info-div');
+//   console.log(event.target.getAttribute("class"));
+//   if (event.target.getAttribute("class") !== null) {
+//     infoDiv.style.display = "none"
+//   }
+// }
 
 // Home page six contect texts sellected
 const contentsText = document.querySelectorAll('.content')
