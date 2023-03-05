@@ -2,12 +2,9 @@
 const myBody = document.querySelector('body')
 const myHeader = document.getElementById('my-header');
 const homeBtn = document.getElementById('home-btn')
-
 let allUsers = []
-let newUser = {playerName: '', playerNickName: '', legs: 0, userScore: 501, toPlay: '', id: null}
+let newUser = null
 let allSelectedPl = []
-// The player who currently plays
-let playerPlaying = {}
 
 // Load in start
 window.document.addEventListener('load',  startFunction())
@@ -36,7 +33,6 @@ function infoFunction() {
     let infoDiv = document.querySelector('.info-div');
     infoDiv.style.display = 'block'
     const infoText = `
-    <div class="close">&#10540;</div>
     <p>Information</p></br>
     <p>Privacy Policy</p></br>
     <p>Help</p>
@@ -92,10 +88,10 @@ function infoFunction() {
     
 }
 
-// Closse info box on click X
+// Closse info box on click outside
 window.onclick = function (event) {
   let infoDiv = document.querySelector('.info-div')
-  if (event.target.matches(".close") && infoDiv != null) {
+  if (!event.target.matches("#home-btn") && infoDiv != null) {
     infoDiv.style.display = 'none'
   }
 }
@@ -181,7 +177,7 @@ function newMatch() {
   localStorage.setItem('SelectedPlayers', JSON.stringify(allSelectedPl))
   allSelectedPl.forEach((player, index) => {
     let addPlCont = `
-    <p data-id="${index}">${index + 1}. ${player.playerNickName}</p>
+    <p data-id="${index}">${index + 1}. ${player}</p>
     `
     matchPlayers.innerHTML += addPlCont
   })
@@ -193,7 +189,6 @@ function newMatch() {
   allPlayersInMatchPage.forEach(player => player.addEventListener('click', (e) => deletePlayer(e)))
   function deletePlayer(e) {
     let index = e.target.getAttribute('data-id')
-    console.log(index)
     allSelectedPl.splice(index, 1)
     newMatch()
   }
@@ -207,7 +202,6 @@ function newMatch() {
     let infoDiv = document.querySelector('.info-div')
     infoDiv.style.display = 'block'
     const infoText = `
-    <div class="close"></div>
     <p>Clear Players</p></br>
     <p>Help</p>
     `
@@ -246,30 +240,6 @@ function startMatchBtnFunction() {
     <main>
     <div class="start-match-page">
       <div class="start-match-body"></div>
-      <div class="start-match-keyboard">
-        <table>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-          </tr>
-          <tr>
-            <td>7</td>
-            <td>8</td>
-            <td>9</td>
-          </tr>
-          <tr>
-            <td>&#10540;</td>
-            <td>0</td>
-            <td>&larrhk;</td>
-          </tr>
-        </table>
-      </div>
     </main>
     <footer id="myFooter">
       <small
@@ -279,153 +249,29 @@ function startMatchBtnFunction() {
       >
     </footer>
     `
-  myBody.innerHTML = startMatchContent
-  let startMatchBody = document.querySelector('.start-match-body')
+    myBody.innerHTML = startMatchContent
+    let startMatchBody = document.querySelector('.start-match-body')
 
-  // Scoreboard
-  playerPlaying = allSelectedPl[0]
-
-  allSelectedPl.forEach((player, index) => {
-    let selectedPlayer = `playerScore_${index + 1}`
-
-    let playerBox = `
+    allSelectedPl.forEach((player, index) => {
+      let playerBox = `
       <div class="player-box" data-box-id="${index}">
       <div class="player-name-box">
-      <h3>${player.playerNickName}</h3>
+      <h3>${player}</h3>
       </div>
       <div class="legs-box">
-      <p>Legs ${player.legs}</p>
+      <p>LEGS 0</p>
       </div>
       <div class="player-score-box">
-      ${player.userScore}
+      501
       </div>
-      <div class="to-play-box">${player.toPlay}</div>
+      <div class="to-play-box">
+      to play
       </div>
-      `
-    startMatchBody.innerHTML += playerBox
-  })
-
-  // Players in the game
-  function currentPlayer() {
-    let players = document.querySelectorAll('.player-box')
-    let playersInTheGame = players.length
-    players[0].classList.add('current-player')
-    players[0].children[3].innerHTML = 'to start leg 1'
-  }
-  currentPlayer()
-
-  // Keyboard functionality
-  let startMatchKeyboard = document.querySelectorAll(
-    '.start-match-keyboard > table td'
-  )
-  startMatchKeyboard.forEach((button) =>
-    button.addEventListener('click', (e) => keyboard(e))
-  )
-
-  let number = ''
-  function keyboard(e) {
-    switch (e.target.innerText) {
-      case '1':
-        number = number + 1
-        break
-      case '2':
-        number = number + 2
-        break
-      case '3':
-        number = number + 3
-        break
-      case '4':
-        number = number + 4
-        break
-      case '5':
-        number = number + 5
-        break
-      case '6':
-        number = number + 6
-        break
-      case '7':
-        number = number + 7
-        break
-      case '8':
-        number = number + 8
-        break
-      case '9':
-        number = number + 9
-        break
-      case '0':
-        number = number + 0
-        break
-      case '⤬':
-        console.log('⤬')
-        break
-      case '↩':
-        console.log('↩')
-        result(playerPlaying, number)
-        number = ''
-        break
-      default:
-        break
-    }
-  }
-
-  // Result funcion
-  function result(playerPlaying, number) {
-    let numberOfPlayers = allSelectedPl.length
-    let playerId = playerPlaying.id
-    let playerName = playerPlaying.playerName
-    let playerNickName = playerPlaying.playerNickName
-    let playerLegs = playerPlaying.legs
-    let playerScore = playerPlaying.userScore
-    let playerToPlay = playerPlaying.toPlay
-    let nextPlayer = 0
-    playerToPlay = 'player to play'
-
-    let playerBox = document.querySelectorAll('.player-box')
-    let playerNewScore = playerScore - number
-
-    if (playerNewScore > 0) {
-      playerLegs = playerLegs
-    } else {
-      playerLegs++
-    }
-
-    let playerBoxContent = `
-      <div class="player-box" data-box-id="${playerId}">
-      <div class="player-name-box">
-      <h3>${playerNickName}</h3>
-      </div>
-      <div class="legs-box">
-      <p>Legs ${playerLegs}</p>
-      </div>
-      <div class="player-score-box">
-      ${playerNewScore}
-      </div>
-      <div class="to-play-box">${`leads by ${number}`}</div>
       </div>
       `
-
-    playerBox[playerId].innerHTML = playerBoxContent
-
-    number = ''
-    playerBox[nextPlayer].classList.remove('current-player')
-    playerBox[nextPlayer + 1].classList.add('current-player')
-    playerBox[nextPlayer + 1].childNodes[7].innerHTML = 'to play'
-    // Switch Players for play
-    playerPlaying = allSelectedPl[nextPlayer +1]
-
-    nextPlayer = nextPlayer + 1
-    console.log(nextPlayer)
-
-    if (nextPlayer === numberOfPlayers) {
-      console.log('nulira')
-      nextPlayer = 0
-    }
-  }
-  // Result funcion END
+      startMatchBody.innerHTML += playerBox
+    })
 }
-// Start match function END
-
-
 
 // Select player function
 function selectPlayerFunction() {
@@ -457,7 +303,7 @@ function selectPlayerFunction() {
   let selectPlayerBody = document.querySelector('.select-player-body')
   allUsers.forEach((user) => {
     let allUserToSet = `
-    <div class="selected-player-box" data-select-id="${user.id}">
+    <div class="selected-player-box">
       <h4>${user.playerName}</h4>
       <p>${user.playerNickName}</p>
     </div>
@@ -473,8 +319,7 @@ function selectPlayerFunction() {
   })
 
   function selectedPlayer() {
-    let playerId = this.getAttribute('data-select-id')
-    let selectedPl = allUsers[playerId]
+    let selectedPl = this.children[1].innerText
     allSelectedPl.push(selectedPl)
     newMatch()
   }
@@ -527,12 +372,11 @@ function selectPlayerFunction() {
     okBtn.addEventListener('click', () => {
       let playerName = userName.value
       let playerNickName = userNickName.value
-      let userId = allUsers.length
-      newUser = { playerName: playerName, playerNickName: playerNickName, legs: 0, userScore: 501, toPlay: '', id: userId}
+      newUser = { playerName: playerName, playerNickName: playerNickName }
       if (newUser.playerName !== '' && newUser.playerNickName !== '') {
         let copyAllUsers = [...allUsers, newUser]
         allUsers = copyAllUsers
-        newUser = { playerName: '', playerNickName: '', legs: 0, userScore: 501, toPlay: '', id: null}
+        newUser = ''
         localStorage.setItem('DartsUsers', JSON.stringify(allUsers))
         selectPlayerFunction()
       } else {
