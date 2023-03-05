@@ -556,6 +556,3 @@ function clearPlayerFunction() {
   newMatch()
 }
 
-function backup() {
-  console.log('backup')
-}
