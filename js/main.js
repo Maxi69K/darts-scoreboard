@@ -198,7 +198,7 @@ function newMatch() {
   </main>
   <footer id="myFooter">
     <small>
-      &copy; 2023 Darts Scoreboard by <a target="_blank" href="https://webdizajn.eu.org">Maxi</a>. All Rights Reserved.
+      &copy; 2023 Darts Scoreboard by <a target="_blank" href="https://webdizajnmaxi.eu.org">Maxi</a>. All Rights Reserved.
     </small>
   </footer>
   `;
@@ -308,7 +308,7 @@ function newMatch() {
     <footer id="myFooter">
       <small
         >&copy; 2023 Darts Scoreboard by
-        <a target="_blank" href="https://webdizajn.eu.org">Maxi</a>. All Rights
+        <a target="_blank" href="https://webdizajnmaxi.eu.org">Maxi</a>. All Rights
         Reserved.</small
       >
     </footer>
@@ -484,7 +484,7 @@ function newMatch() {
     <footer id="myFooter">
       <small
         >&copy; 2023 Darts Scoreboard by
-        <a target="_blank" href="https://webdizajn.eu.org">Maxi</a>. All Rights
+        <a target="_blank" href="https://webdizajnmaxi.eu.org">Maxi</a>. All Rights
         Reserved.</small
       >
     </footer>
@@ -549,7 +549,7 @@ function newMatch() {
     <footer id="myFooter">
       <small
         >&copy; 2023 Darts Scoreboard by
-        <a target="_blank" href="https://webdizajn.eu.org">Maxi</a>. All Rights
+        <a target="_blank" href="https://webdizajnmaxi.eu.org">Maxi</a>. All Rights
         Reserved.</small
       >
     </footer>
