@@ -1,4 +1,6 @@
+/*   random images:      https://source.unsplash.com/random    */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+/* font-family: 'Poppins', sans-serif; */
 /**********************************************
                 Global styles
 **********************************************/
@@ -17,8 +19,8 @@
 }
 
 html {
-  scroll-behavior: smooth;
-  user-select: none; 
+  scroll-behavior: smooth; /* Usporava skrol */
+  user-select: none; /* Gasi plavu boju kada se klikce na nesto */
 }
 
 body {
@@ -38,6 +40,52 @@ a {
 /**********************************************
                     Layout
 **********************************************/
+
+/* Novo */
+.my-header {
+  padding: 10px;
+}
+.menu-content {
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+  gap: 10px;
+}
+.svg-container {
+  width: 20px;
+  height: 20px;
+}
+.my-header svg {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.menu-btn {
+  padding: 0 18.7px;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+.menu-btn:hover {
+  color: #ccc;
+}
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  cursor: pointer;
+  z-index: 1;
+}
+/* Novo Kraj */
+
+
+
+
+
 h1 {
   font-size: 1.2rem;
   margin-left: 5px;
@@ -47,9 +95,9 @@ header {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 20px 10px;
+  _padding: 20px 10px;
 }
-header svg {
+_header svg {
   height: 20px;
 }
 #home-btn {
@@ -63,7 +111,7 @@ header svg {
   background-color: var(--secondary-color);
   cursor: pointer;
 }
-.info-div .close {
+_.info-div .close {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -386,5 +434,38 @@ text-align: center;
 *********************************************/
 /* @media print {} */
 
-/* @media all and (min-width: 576px) {
-} */
+@media all and (min-width: 576px) {
+  .my-header{
+    position: relative;
+    width: 550px;
+    margin: auto;
+  }
+  .home-page,
+  .new-match-page,
+  .select-player-page,
+  .add-player-page,
+  .start-match-page {
+    width: 550px;
+    height: 768px;
+    margin: auto;
+  }
+  .new-match-body {
+    height: 650px;
+    margin: auto;
+  }
+  .new-match-body-header {
+    border: 5px solid var(--secondary-color);
+    margin: 0 auto 5px;
+  }
+  #start-match-btn {
+    width: 90%;
+    margin: 0 auto 5px;
+  }
+  .add-player-body .bottomBtn {
+    width: 40%;
+  }
+  .start-match-keyboard {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
