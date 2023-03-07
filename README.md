@@ -2,7 +2,7 @@
 
 Project done using HTML, CSS and vanila JavaScript.
 
-### `darts-scoreboard` :point_right: [Live Demo](https://???) :point_left: just do a CTRL+click (to open :link: in a new tab)
+### `darts-scoreboard` :point_right: [Live Demo](https://maxi69k.github.io/darts-scoreboard) :point_left: just do a CTRL+click (to open :link: in a new tab)
 
 <div align="center">
 <img src="https://myoctocat.com/assets/images/base-octocat.svg" alt="myoctocat" width="200">
