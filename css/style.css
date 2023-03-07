@@ -1,35 +1,30 @@
-/*   random images:      https://source.unsplash.com/random    */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-/* font-family: 'Poppins', sans-serif; */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
 /**********************************************
                 Global styles
 **********************************************/
 *,
 ::before,
 ::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-	--primary-color: #fff;
-	--secondary-color: #000;
-	--background-color: #1751e2;
-}
-
-html {
-  scroll-behavior: smooth; /* Usporava skrol */
-  user-select: none; /* Gasi plavu boju kada se klikce na nesto */
+  --primary-color: #fff;
+  --secondary-color: #000;
+  --background-color: #1751e2;
 }
 
 body {
   position: relative;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   min-height: 100vh;
-  padding-bottom:60px;
+  padding-bottom: 60px;
   background-color: var(--background-color);
   color: var(--primary-color);
+  user-select: none;
 }
 
 a {
@@ -38,16 +33,14 @@ a {
 }
 
 /**********************************************
-                    Layout
+                Specific styles
 **********************************************/
-
-/* Novo */
 .my-header {
   padding: 10px;
 }
 .menu-content {
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
   align-items: center;
   gap: 10px;
 }
@@ -80,11 +73,6 @@ a {
   cursor: pointer;
   z-index: 1;
 }
-/* Novo Kraj */
-
-
-
-
 
 h1 {
   font-size: 1.2rem;
@@ -95,10 +83,6 @@ header {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  _padding: 20px 10px;
-}
-_header svg {
-  height: 20px;
 }
 #home-btn {
   cursor: pointer;
@@ -110,14 +94,6 @@ _header svg {
   padding: 40px 30px 40px;
   background-color: var(--secondary-color);
   cursor: pointer;
-}
-_.info-div .close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 20px;
-  height: 20px;
-  _background: url(../img/close.svg) center/cover;
 }
 .info-div-content {
   position: absolute;
@@ -154,7 +130,6 @@ _.info-div .close {
   left: 2px;
 }
 section {
-  border: 1px solid #fff;
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -162,12 +137,21 @@ section {
 }
 
 .field {
-  border: 1px solid #fff;
+  border-top: 5px solid var(--secondary-color);
   display: flex;
   justify-content: center;
   align-items: center;
   width: 50%;
   height: 50%;
+}
+.new_match,
+.menage_players {
+  border-right: 2.5px solid var(--secondary-color);
+}
+
+.resume_match,
+.menage_teams {
+  border-left: 2.5px solid var(--secondary-color);
 }
 
 .content svg {
@@ -181,23 +165,19 @@ section {
 }
 
 aside {
-  border: 1px solid #fff;
+  border-top: 5px solid var(--secondary-color);
+  border-bottom: 5px solid var(--secondary-color);
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 33.333%;
 }
+
 /* New Match */
-#new-match-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
 .new-match-svg {
   display: flex;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
   gap: 20px;
 }
 .new-match-svg svg {
@@ -208,11 +188,11 @@ aside {
   height: 100%;
 }
 .new-match-body-header {
-width: 100%;
-min-height: 50px;
-padding: 10px 0;
-border-top: 5px solid var(--secondary-color);
-text-align: center;
+  width: 100%;
+  min-height: 50px;
+  padding: 10px 0;
+  border-top: 5px solid var(--secondary-color);
+  text-align: center;
 }
 .new-match-body {
   position: relative;
@@ -233,6 +213,7 @@ text-align: center;
   background-color: var(--background-color);
   cursor: pointer;
 }
+
 /* Select player */
 .select-player-header {
   display: flex;
@@ -242,7 +223,7 @@ text-align: center;
 }
 .select-player-svg {
   display: flex;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
   gap: 20px;
 }
 .select-player-page {
@@ -256,6 +237,7 @@ text-align: center;
   padding: 10px;
   background-color: var(--secondary-color);
 }
+
 /* Add player */
 .add-player-header {
   display: flex;
@@ -265,7 +247,7 @@ text-align: center;
 }
 .add-player-svg {
   display: flex;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
   gap: 20px;
 }
 .add-player-page {
@@ -309,6 +291,7 @@ text-align: center;
 #errBox {
   color: red;
 }
+
 /* Start match page*/
 #start-match-header {
   display: flex;
@@ -318,12 +301,11 @@ text-align: center;
 }
 .start-match-svg {
   display: flex;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
   gap: 20px;
 }
 .start-match-page {
   width: 100%;
-  height: 79vh;
   background-color: var(--secondary-color);
 }
 .start-match-body {
@@ -367,19 +349,20 @@ text-align: center;
 .to-play-box {
   padding: 5px 0;
 }
+
 /* Keyboard */
 .start-match-keyboard {
   width: 100%;
-  height: 100%;
 }
 .start-match-keyboard table {
   max-width: 500px;
   height: 200px;
-  margin: 100px auto 0;
+  margin: auto;
   text-align: center;
   font-size: 1.5rem;
 }
-.start-match-keyboard table, td {
+.start-match-keyboard table,
+td {
   border: 5px solid var(--secondary-color);
   border-collapse: collapse;
   background-color: var(--background-color);
@@ -397,10 +380,7 @@ text-align: center;
   color: var(--secondary-color);
 }
 
-
-
-
-
+/* Footer */
 #myFooter {
   position: absolute;
   bottom: 0;
@@ -409,33 +389,13 @@ text-align: center;
   line-height: 60px;
   text-align: center;
 }
-/**********************************************
-                Specific styles
-**********************************************/
-
-/**********************************************
-                Helper classes
-**********************************************/
-.list-reset {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.clearfix:before,
-.clearfix:after {
-  content: " ";
-  display: table;
-}
-.clearfix:after {
-  clear: both;
-}
 /*********************************************
                @media Queries
 *********************************************/
 /* @media print {} */
 
 @media all and (min-width: 576px) {
-  .my-header{
+  .my-header {
     position: relative;
     width: 550px;
     margin: auto;
@@ -465,7 +425,19 @@ text-align: center;
     width: 40%;
   }
   .start-match-keyboard {
-    margin-bottom: 0;
-    padding-bottom: 0;
+    padding-top: 15%;
+  }
+  .new_match,
+  .menage_players {
+    border-left: 5px solid var(--secondary-color);
+  }
+
+  .resume_match,
+  .menage_teams {
+    border-right: 5px solid var(--secondary-color);
+  }
+  aside {
+    border-right: 5px solid var(--secondary-color);
+    border-left: 5px solid var(--secondary-color);
   }
 }
