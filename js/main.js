@@ -242,7 +242,6 @@ function newMatch() {
   }
 
   // Set Match Length Function
-  console.log(setMatchLength)
   setMatchLength.addEventListener('click', selectMatchLengthFunction)
   function selectMatchLengthFunction() {
     //div.setAttribute('class', 'length-div')
@@ -257,7 +256,7 @@ function newMatch() {
       </form>
     </div>
     `
-    myBody.innerHTML += setLength
+    newMatchHeader.innerHTML += setLength
     let lengthDivContent = document.querySelector('.length-div-content')
     lengthDivContent.style.display = 'block'
     let input = document.getElementById('set-length')
