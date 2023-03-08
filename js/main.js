@@ -17,7 +17,7 @@ allUsers = [];
 let newUser = {
   playerName: "",
   playerNickName: "",
-  legs: 0,
+  legs: 1,
   userScore: 501,
   toPlay: "",
   id: null,
@@ -27,7 +27,8 @@ let allSelectedPl = [];
 let currentPlayer = {};
 let select = 0;
 let number = [];
-
+console.log(allUsers)
+console.log(allSelectedPl)
 // Load in start
 window.document.addEventListener("load", startFunction());
 function startFunction() {
@@ -207,6 +208,7 @@ function newMatch() {
   let newMatchHeader = document.getElementById("new-match-header");
   let selectPlayer = document.getElementById("select-player");
   let selectTeam = document.getElementById("select-team");
+  let newMatchBody = document.querySelector('.new-match-body')
   let matchPlayers = document.querySelector(".match-players");
   let newMatchBtn = document.getElementById("newMatch-btn");
   let startMatchBtn = document.getElementById("start-match-btn");
@@ -245,8 +247,9 @@ function newMatch() {
     const infoText = `
     <div class="close">&#10540;</div>
     <p>Clear Players</p></br>
-    <p>Help</p>
-    `;
+    <p>Help</p></br>
+    <p><a href="index.html">&#10510; Back</a></p>
+    `
     infoDiv.innerHTML = infoText;
     let allP = document.querySelectorAll(".info-div > p");
     allP.forEach((par) => (par.style.cursor = "pointer"));
@@ -270,8 +273,10 @@ function newMatch() {
 
   // Start match function
   function startMatchBtnFunction() {
-    console.log("Starting match function");
-    let startMatchContent = `
+    console.log('Starting match function')
+
+    if (allSelectedPl.length !== 0) {
+      let startMatchContent = `
     <header class="my-header">
       <h1><a href="index.html">In Game</a></h1>
       <div class="menu-btn">&#8285;</div>
@@ -312,15 +317,14 @@ function newMatch() {
         Reserved.</small
       >
     </footer>
-    `;
-    myBody.innerHTML = startMatchContent;
-    let startMatchBody = document.querySelector(".start-match-body");
+    `
+      myBody.innerHTML = startMatchContent
+      let startMatchBody = document.querySelector('.start-match-body')
 
-    // Scoreboard
-    currentPlayer = allSelectedPl[0];
-
-    allSelectedPl.forEach((player, index) => {
-      let playerBox = `
+      // Scoreboard
+      currentPlayer = allSelectedPl[0]
+      allSelectedPl.forEach((player, index) => {
+        let playerBox = `
       <div class="player-box" data-box-id="${index}">
       <div class="player-name-box">
       <h3>${player.playerNickName}</h3>
@@ -333,85 +337,90 @@ function newMatch() {
       </div>
       <div class="to-play-box">${player.toPlay}</div>
       </div>
-      `;
-      startMatchBody.innerHTML += playerBox;
-    });
+      `
+        startMatchBody.innerHTML += playerBox
+      })
+    } else {
+      newMatchBody.innerHTML = 'Please select players first!'
+    }
 
     // Players in the game
-    let players = document.querySelectorAll(".player-box");
-    players[select].classList.add("current-player");
-    players[select].children[3].innerHTML = "to start leg 1";
+    let players = document.querySelectorAll('.player-box')
+    players[select].classList.add('current-player')
+    players[select].children[3].innerHTML = `to start leg ${currentPlayer.legs}`
 
     // Keyboard functionality
     let startMatchKeyboard = document.querySelectorAll(
-      ".start-match-keyboard > table td"
-    );
+      '.start-match-keyboard > table td'
+    )
     startMatchKeyboard.forEach((button) =>
-      button.addEventListener("click", (e) => keyboard(e))
-    );
+      button.addEventListener('click', (e) => keyboard(e))
+    )
 
     function keyboard(e) {
       switch (e.target.innerText) {
-        case "1":
-          number.push(1);
-          break;
-        case "2":
-          number.push("2");
-          break;
-        case "3":
-          number.push(3);
-          break;
-        case "4":
-          number.push(4);
-          break;
-        case "5":
-          number.push("5");
-          break;
-        case "6":
-          number.push(6);
-          break;
-        case "7":
-          number.push(7);
-          break;
-        case "8":
-          number.push(8);
-          break;
-        case "9":
-          number.push(9);
-          break;
-        case "0":
-          number.push(0);
-          break;
-        case "⤬":
-          console.log("⤬");
-          number.pop();
-          console.log(number);
-          break;
-        case "↩":
-          console.log("↩");
-          result(number);
-          number = [];
-          break;
+        case '1':
+          number.push(1)
+          break
+        case '2':
+          number.push(2)
+          break
+        case '3':
+          number.push(3)
+          break
+        case '4':
+          number.push(4)
+          break
+        case '5':
+          number.push(5)
+          break
+        case '6':
+          number.push(6)
+          break
+        case '7':
+          number.push(7)
+          break
+        case '8':
+          number.push(8)
+          break
+        case '9':
+          number.push(9)
+          break
+        case '0':
+          number.push(0)
+          break
+        case '⤬':
+          console.log('⤬')
+          number.pop()
+          console.log(number)
+          break
+        case '↩':
+          console.log('↩')
+          result(number)
+          number = []
+          break
         default:
-          break;
+          break
       }
     }
 
     // Result funcion
     function result(number) {
-      let num = Number(number.join(""));
-      let playerBox = document.querySelectorAll(".player-box");
-      let numberOfPlayers = allSelectedPl.length;
-      let playerId = currentPlayer.id;
-      let playerName = currentPlayer.playerName;
-      let playerNickName = currentPlayer.playerNickName;
-      let playerLegs = currentPlayer.legs;
-      let playerScore = currentPlayer.userScore;
-      playerScore = playerScore - num;
-
-      allSelectedPl[select].userScore = playerScore;
-      let playerToPlay = currentPlayer.toPlay;
-      playerToPlay = "player to play";
+      console.log(allSelectedPl)
+      let num = Number(number.join(''))
+      let playerBox = document.querySelectorAll('.player-box')
+      let numberOfPlayers = allSelectedPl.length
+      let playerId = currentPlayer.id
+      let playerName = currentPlayer.playerName
+      let playerNickName = currentPlayer.playerNickName
+      let playerLegs = currentPlayer.legs
+      let playerScore = currentPlayer.userScore
+      playerScore = playerScore - num
+      console.log(currentPlayer)
+      console.log(currentPlayer.legs)
+      allSelectedPl[select].userScore = playerScore
+      let playerToPlay = currentPlayer.toPlay
+      playerToPlay = 'player to play'
 
       let playerBoxContent = `
       <div class="player-name-box">
@@ -424,42 +433,85 @@ function newMatch() {
       ${playerScore}
       </div>
       <div class="to-play-box">${`leads by ${num}`}</div>
-      `;
-      playerBox[select].innerHTML = playerBoxContent;
+      `
+      playerBox[select].innerHTML = playerBoxContent
+      
+      switch (numberOfPlayers) {
+        case 1:
+          select = 0
+          break
+        case 2:
+          if (select < 1) {
+            playerBox[select].classList.remove('current-player')
+            playerBox[select + 1].classList.add('current-player')
+            playerBox[select + 1].childNodes[7].innerHTML = 'to play'
+            select++
+          } else {
+            playerBox[select - (numberOfPlayers - 1)].classList.add('current-player')
+            playerBox[select].classList.remove('current-player')
+            playerBox[select - (numberOfPlayers - 1)].childNodes[7].innerHTML =
+              'to play'
+            select = 0
+          }
+          break
+        case 3:
+          if (select < 2) {
+            playerBox[select].classList.remove('current-player')
+            playerBox[select + 1].classList.add('current-player')
+            playerBox[select + 1].childNodes[7].innerHTML = 'to play'
+            select++
+          } else {
+            playerBox[select - (numberOfPlayers - 1)].classList.add(
+              'current-player'
+            )
+            playerBox[select].classList.remove('current-player')
+            playerBox[select - (numberOfPlayers - 1)].childNodes[7].innerHTML =
+              'to play'
+            select = 0
+          }
+          break
+        case 4:
+          if (select < 3) {
+            playerBox[select].classList.remove('current-player')
+            playerBox[select + 1].classList.add('current-player')
+            playerBox[select + 1].childNodes[7].innerHTML = 'to play'
+            select++
+          } else {
+            playerBox[select - (numberOfPlayers - 1)].classList.add(
+              'current-player'
+            )
+            playerBox[select].classList.remove('current-player')
+            playerBox[select - (numberOfPlayers - 1)].childNodes[7].innerHTML =
+              'to play'
+            select = 0
+          }
+          break
 
-      if (select < 3) {
-        playerBox[select].classList.remove("current-player");
-        playerBox[select + 1].classList.add("current-player");
-        playerBox[select + 1].childNodes[7].innerHTML = "to play";
-        select++;
-      } else {
-        playerBox[select - (numberOfPlayers - 1)].classList.add(
-          "current-player"
-        );
-        playerBox[select].classList.remove("current-player");
-        playerBox[select - (numberOfPlayers - 1)].childNodes[7].innerHTML =
-          "to play";
-        select = 0;
+        default:
+          break
       }
 
       if (playerScore > 0) {
-        playerLegs = playerLegs;
+        playerLegs = playerLegs
       } else {
         if (select === 0) {
-          allSelectedPl[numberOfPlayers - 1].legs = playerLegs + 1;
-          allSelectedPl[numberOfPlayers - 1].userScore = 501;
-          startMatchBtnFunction();
+          console.log('userScore je tacno 0')
+          allSelectedPl[numberOfPlayers - 1].legs = playerLegs + 1
+          allSelectedPl[numberOfPlayers - 1].userScore = 501
+          startMatchBtnFunction()
         } else {
-          allSelectedPl[select - 1].legs = playerLegs + 1;
-          allSelectedPl[select - 1].userScore = 501;
-          startMatchBtnFunction();
+          console.log('ostalo po else')
+          console.log(playerLegs)
+          allSelectedPl[select - 1].legs = playerLegs + 1
+          allSelectedPl[select - 1].userScore = 501
+          startMatchBtnFunction()
         }
       }
 
       // Switch Players for play
-      currentPlayer = allSelectedPl[select];
-      num = null;
-      number = [];
+      currentPlayer = allSelectedPl[select]
+      num = null
+      number = []
     }
     // Result funcion END
   }
@@ -571,7 +623,7 @@ function newMatch() {
         newUser = {
           playerName: playerName,
           playerNickName: playerNickName,
-          legs: 0,
+          legs: 1,
           userScore: 501,
           toPlay: "",
           id: userId,
@@ -582,7 +634,7 @@ function newMatch() {
           newUser = {
             playerName: "",
             playerNickName: "",
-            legs: 0,
+            legs: 1,
             userScore: 501,
             toPlay: "",
             id: null,
