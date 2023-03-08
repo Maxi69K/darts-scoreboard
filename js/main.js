@@ -28,6 +28,9 @@ let currentPlayer = {}
 let select = 0
 let number = []
 
+// Match Length
+let matchLegs = 3
+
 // Load in start
 window.document.addEventListener('load', startFunction())
 function startFunction() {
@@ -187,8 +190,8 @@ function newMatch() {
     <div class="new-match-page">
       <div class="new-match-body-header">
         <h3>501</h3>
-        <h4>race to 3 legs</h4>
-        <p>fixed match length</p>
+        <h4>race to ${matchLegs} legs</h4>
+        <p class="set-match-length">fixed match length</p>
       </div>
       <div class="new-match-body">
         <div class="match-players"></div>
@@ -211,6 +214,7 @@ function newMatch() {
   let matchPlayers = document.querySelector('.match-players')
   let newMatchBtn = document.getElementById('newMatch-btn')
   let startMatchBtn = document.getElementById('start-match-btn')
+  let setMatchLength = document.querySelector('.set-match-length')
 
   selectPlayer.addEventListener('click', selectPlayerFunction)
   selectTeam.addEventListener('click', selectTeamFunction)
@@ -235,6 +239,35 @@ function newMatch() {
     let index = e.target.getAttribute('data-id')
     allSelectedPl.splice(index, 1)
     newMatch()
+  }
+
+  // Set Match Length Function
+  console.log(setMatchLength)
+  setMatchLength.addEventListener('click', selectMatchLengthFunction)
+  function selectMatchLengthFunction() {
+    //div.setAttribute('class', 'length-div')
+    //myHeader.appendChild(div)
+    //let lengthDiv = document.querySelector('.length-div')
+    let setLength = `
+    <div class="length-div-content">
+      <form action="#">
+        <label for="set-length">Set Length:</label>
+        <input type="number" id="set-length" min="1" max="30" value="${matchLegs}">
+        <button class="setBtn">SET</button>
+      </form>
+    </div>
+    `
+    myBody.innerHTML += setLength
+    let lengthDivContent = document.querySelector('.length-div-content')
+    lengthDivContent.style.display = 'block'
+    let input = document.getElementById('set-length')
+    let setBtn = document.querySelector('.setBtn')
+    setBtn.addEventListener('click', (e) => {
+      e.preventDefault()
+      matchLegs = Number(input.value)
+      lengthDivContent.style.display = 'none'
+      newMatch()
+    })
   }
 
   // New match button function
@@ -433,7 +466,7 @@ function newMatch() {
       playerBox[select].innerHTML = playerBoxContent
 
       // Winner
-      if (playerLegs === 3 && playerScore <= 0) {
+      if (playerLegs === matchLegs && playerScore <= 0) {
         alert(`Winner is ${playerName} - ${playerNickName}`)
         location.reload()
       }
