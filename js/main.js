@@ -1,127 +1,126 @@
 // Darts Scoreboard
-const myBody = document.querySelector("body");
-const myHeader = document.querySelector(".my-header");
-const menuBtn = document.querySelector(".menu-btn");
+const myBody = document.querySelector('body')
+const myHeader = document.querySelector('.my-header')
+const menuBtn = document.querySelector('.menu-btn')
 
-const div = document.createElement("div");
-const paragraph = document.createElement("p");
+const div = document.createElement('div')
+const paragraph = document.createElement('p')
 
 // Header
-const header = `<header class="my-header"></header>`;
+const header = `<header class="my-header"></header>`
 
 // Close button
-const closeBtn = `<div class="close">&#10540;</div>`;
+const closeBtn = `<div class="close">&#10540;</div>`
 
 // Players
-allUsers = [];
+allUsers = []
 let newUser = {
-  playerName: "",
-  playerNickName: "",
+  playerName: '',
+  playerNickName: '',
   legs: 1,
   userScore: 501,
-  toPlay: "",
+  toPlay: '',
   id: null,
-};
-let allSelectedPl = [];
+}
+let allSelectedPl = []
 // The player who currently plays
-let currentPlayer = {};
-let select = 0;
-let number = [];
-console.log(allUsers)
-console.log(allSelectedPl)
+let currentPlayer = {}
+let select = 0
+let number = []
+
 // Load in start
-window.document.addEventListener("load", startFunction());
+window.document.addEventListener('load', startFunction())
 function startFunction() {
-  if (localStorage.getItem("DartsUsers")) {
-    allUsers = JSON.parse(localStorage.getItem("DartsUsers"));
+  if (localStorage.getItem('DartsUsers')) {
+    allUsers = JSON.parse(localStorage.getItem('DartsUsers'))
   } else {
-    allUsers = allUsers;
+    allUsers = allUsers
   }
-  if (localStorage.getItem("SelectedPlayers")) {
-    allSelectedPl = JSON.parse(localStorage.getItem("SelectedPlayers"));
+  if (localStorage.getItem('SelectedPlayers')) {
+    allSelectedPl = JSON.parse(localStorage.getItem('SelectedPlayers'))
   } else {
-    allSelectedPl = allSelectedPl;
+    allSelectedPl = allSelectedPl
   }
 }
 
 // Menu button in home page
-menuBtn.addEventListener("click", infoFunction);
+menuBtn.addEventListener('click', infoFunction)
 
 // Info button functions in header
 function infoFunction() {
   // Create info div
-  div.setAttribute("class", "info-div");
-  myHeader.appendChild(div);
+  div.setAttribute('class', 'info-div')
+  myHeader.appendChild(div)
   // Select info div
-  let infoDiv = document.querySelector(".info-div");
-  infoDiv.style.display = "block";
+  let infoDiv = document.querySelector('.info-div')
+  infoDiv.style.display = 'block'
   // text in info div
   const infoText = `
   <div class="close">&#10540;</div>
   <p>Information</p>
   </br><p>Privacy Policy</p></br>
   <p>Help</p>
-  `;
-  infoDiv.innerHTML = infoText;
+  `
+  infoDiv.innerHTML = infoText
 
   // Select all paragraph elements in info div
-  let allP = document.querySelectorAll(".info-div > p");
+  let allP = document.querySelectorAll('.info-div > p')
   // All information in three paragraph
   const informationText = `
     <h3>Information</h3>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula imperdiet magna, at accumsan dui lobortis ut. Ut tincidunt quis nulla quis sagittis. In pellentesque, purus id auctor sagittis, ligula.</p>
     <button class="infoContentBtn">OK</button>
-    `;
+    `
   const PrivacyPolicyText = `
     <h3>Privacy Policy</h3>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla semper ultricies augue, sit amet malesuada diam rhoncus non. Sed id nisi a felis tristique ultrices. Donec non semper velit. Curabitur volutpat bibendum nulla at tincidunt. Vivamus lobortis tellus et mauris hendrerit, eu convallis sapien finibus. Vestibulum tempus volutpat justo, nec pellentesque dolor elementum a. Duis et fringilla tellus, in suscipit diam. Sed sodales nulla vitae cursus feugiat. Nunc nec justo id turpis lacinia ultrices. Etiam euismod ac risus accumsan venenatis. Suspendisse accumsan fermentum nibh. Fusce ut neque quis metus aliquam consequat at in dui. Nullam condimentum nisl odio, malesuada tincidunt tellus vulputate ac. Donec sapien ipsum, pharetra nec risus et, vulputate ultricies nunc. Maecenas tristique ac risus sed viverra.</p>
     <button class="infoContentBtn">OK</button>
-    `;
+    `
   const helpText = `
     <h3>Help</h3>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae dolor accumsan, ullamcorper ex sed, posuere sapien. Curabitur lobortis tempus quam, eget volutpat nisi luctus nec. Aenean tellus sapien, suscipit sit amet vulputate quis, commodo ac purus. Maecenas vestibulum vel sem pellentesque imperdiet. Curabitur faucibus condimentum sapien. Quisque eu sodales libero. Fusce a commodo orci, non condimentum purus. Suspendisse vitae eleifend dolor. Sed sed elit ac odio vestibulum sagittis. Pellentesque lobortis mi quis pulvinar malesuada. Ut nec cursus quam. Ut id lacus sed risus vulputate viverra. Vestibulum consectetur nibh non tellus sodales euismod. In et nunc ligula. Pellentesque finibus laoreet sem elementum fermentum.</p>
     <button class="infoContentBtn">OK</button>
-    `;
+    `
   allP.forEach((par) => {
-    par.style.cursor = "pointer";
-    par.addEventListener("click", () => paragraphClickHandler(par));
-  });
+    par.style.cursor = 'pointer'
+    par.addEventListener('click', () => paragraphClickHandler(par))
+  })
 
   // paragraphClickHandler function
   function paragraphClickHandler(par) {
     switch (par.innerHTML) {
-      case "Information":
-        infoDiv.setAttribute("class", "info-div-content");
-        infoDiv.innerHTML = informationText;
+      case 'Information':
+        infoDiv.setAttribute('class', 'info-div-content')
+        infoDiv.innerHTML = informationText
         document
-          .querySelector(".infoContentBtn")
-          .addEventListener("click", () => {
-            infoDiv.style.display = "none";
-            infoDiv.setAttribute("class", ".info-div");
-          });
-        break;
-      case "Privacy Policy":
-        infoDiv.setAttribute("class", "info-div-content");
-        infoDiv.innerHTML = PrivacyPolicyText;
+          .querySelector('.infoContentBtn')
+          .addEventListener('click', () => {
+            infoDiv.style.display = 'none'
+            infoDiv.setAttribute('class', '.info-div')
+          })
+        break
+      case 'Privacy Policy':
+        infoDiv.setAttribute('class', 'info-div-content')
+        infoDiv.innerHTML = PrivacyPolicyText
         document
-          .querySelector(".infoContentBtn")
-          .addEventListener("click", () => {
-            infoDiv.style.display = "none";
-            infoDiv.setAttribute("class", ".info-div");
-          });
-        break;
-      case "Help":
-        infoDiv.setAttribute("class", "info-div-content");
-        infoDiv.innerHTML = helpText;
+          .querySelector('.infoContentBtn')
+          .addEventListener('click', () => {
+            infoDiv.style.display = 'none'
+            infoDiv.setAttribute('class', '.info-div')
+          })
+        break
+      case 'Help':
+        infoDiv.setAttribute('class', 'info-div-content')
+        infoDiv.innerHTML = helpText
         document
-          .querySelector(".infoContentBtn")
-          .addEventListener("click", () => {
-            infoDiv.style.display = "none";
-            infoDiv.setAttribute("class", ".info-div");
-          });
-        break;
+          .querySelector('.infoContentBtn')
+          .addEventListener('click', () => {
+            infoDiv.style.display = 'none'
+            infoDiv.setAttribute('class', '.info-div')
+          })
+        break
       default:
-        break;
+        break
     }
   }
 }
@@ -129,48 +128,48 @@ function infoFunction() {
 
 // Closse info box on click X
 window.onclick = function (event) {
-  let infoDiv = document.querySelector(".info-div");
-  if (event.target.matches(".close") && infoDiv != null) {
-    infoDiv.style.display = "none";
+  let infoDiv = document.querySelector('.info-div')
+  if (event.target.matches('.close') && infoDiv != null) {
+    infoDiv.style.display = 'none'
   }
-};
+}
 
 // Home page six contect texts sellected
-const contentsText = document.querySelectorAll(".content");
+const contentsText = document.querySelectorAll('.content')
 contentsText.forEach((contentText) => {
-  let targetText = contentText.children[1].innerText;
-  contentText.addEventListener("click", () => choiseNewPage(targetText));
-});
+  let targetText = contentText.children[1].innerText
+  contentText.addEventListener('click', () => choiseNewPage(targetText))
+})
 
 // Select action in home page
 function choiseNewPage(targetText) {
   switch (targetText) {
-    case "New Match":
-      console.log("New Match");
-      newMatch();
-      break;
-    case "Resume Match":
-      console.log("Resume Match");
-      break;
-    case "Menage Players":
-      console.log("Menage Players");
-      break;
-    case "Menage Teams":
-      console.log("Menage Teams");
-      break;
-    case "Statistics":
-      console.log("Statistics");
-      break;
+    case 'New Match':
+      console.log('New Match')
+      newMatch()
+      break
+    case 'Resume Match':
+      console.log('Resume Match')
+      break
+    case 'Menage Players':
+      console.log('Menage Players')
+      break
+    case 'Menage Teams':
+      console.log('Menage Teams')
+      break
+    case 'Statistics':
+      console.log('Statistics')
+      break
 
     default:
-      break;
+      break
   }
 }
 // Select action in home page END
 
 // New Match function
 function newMatch() {
-  myHeader.style.display = "none";
+  myHeader.style.display = 'none'
   const newMatchHeaderContent = `
   <header id="new-match-header" class="my-header">
     <h1><a href="index.html">Match</a></h1>
@@ -202,74 +201,74 @@ function newMatch() {
       &copy; 2023 Darts Scoreboard by <a target="_blank" href="https://webdizajnmaxi.eu.org">Maxi</a>. All Rights Reserved.
     </small>
   </footer>
-  `;
-  myBody.innerHTML = newMatchHeaderContent;
+  `
+  myBody.innerHTML = newMatchHeaderContent
 
-  let newMatchHeader = document.getElementById("new-match-header");
-  let selectPlayer = document.getElementById("select-player");
-  let selectTeam = document.getElementById("select-team");
+  let newMatchHeader = document.getElementById('new-match-header')
+  let selectPlayer = document.getElementById('select-player')
+  let selectTeam = document.getElementById('select-team')
   let newMatchBody = document.querySelector('.new-match-body')
-  let matchPlayers = document.querySelector(".match-players");
-  let newMatchBtn = document.getElementById("newMatch-btn");
-  let startMatchBtn = document.getElementById("start-match-btn");
+  let matchPlayers = document.querySelector('.match-players')
+  let newMatchBtn = document.getElementById('newMatch-btn')
+  let startMatchBtn = document.getElementById('start-match-btn')
 
-  selectPlayer.addEventListener("click", selectPlayerFunction);
-  selectTeam.addEventListener("click", selectTeamFunction);
-  startMatchBtn.addEventListener("click", startMatchBtnFunction);
+  selectPlayer.addEventListener('click', selectPlayerFunction)
+  selectTeam.addEventListener('click', selectTeamFunction)
+  startMatchBtn.addEventListener('click', startMatchBtnFunction)
 
   // Adding selected players in match page
-  localStorage.setItem("SelectedPlayers", JSON.stringify(allSelectedPl));
+  localStorage.setItem('SelectedPlayers', JSON.stringify(allSelectedPl))
   allSelectedPl.forEach((player, index) => {
     let addPlCont = `
     <p data-id="${index}">${index + 1}. ${player.playerNickName}</p>
-    `;
-    matchPlayers.innerHTML += addPlCont;
-  });
-  const allPlayersInMatchPage = document.querySelectorAll(".match-players > p");
-  allPlayersInMatchPage.forEach((player) => (player.style.cursor = "pointer"));
+    `
+    matchPlayers.innerHTML += addPlCont
+  })
+  const allPlayersInMatchPage = document.querySelectorAll('.match-players > p')
+  allPlayersInMatchPage.forEach((player) => (player.style.cursor = 'pointer'))
 
   // Select players to delete in match page
   allPlayersInMatchPage.forEach((player) =>
-    player.addEventListener("click", (e) => deletePlayer(e))
-  );
+    player.addEventListener('click', (e) => deletePlayer(e))
+  )
   function deletePlayer(e) {
-    let index = e.target.getAttribute("data-id");
-    allSelectedPl.splice(index, 1);
-    newMatch();
+    let index = e.target.getAttribute('data-id')
+    allSelectedPl.splice(index, 1)
+    newMatch()
   }
 
   // New match button function
-  newMatchBtn.addEventListener("click", () => {
-    div.setAttribute("class", "info-div");
-    newMatchHeader.appendChild(div);
-    let infoDiv = document.querySelector(".info-div");
-    infoDiv.style.display = "block";
+  newMatchBtn.addEventListener('click', () => {
+    div.setAttribute('class', 'info-div')
+    newMatchHeader.appendChild(div)
+    let infoDiv = document.querySelector('.info-div')
+    infoDiv.style.display = 'block'
     const infoText = `
     <div class="close">&#10540;</div>
     <p>Clear Players</p></br>
     <p>Help</p></br>
     <p><a href="index.html">&#10510; Back</a></p>
     `
-    infoDiv.innerHTML = infoText;
-    let allP = document.querySelectorAll(".info-div > p");
-    allP.forEach((par) => (par.style.cursor = "pointer"));
-    allP[0].addEventListener("click", clearPlayerFunction);
-    allP[1].addEventListener("click", () => {
+    infoDiv.innerHTML = infoText
+    let allP = document.querySelectorAll('.info-div > p')
+    allP.forEach((par) => (par.style.cursor = 'pointer'))
+    allP[0].addEventListener('click', clearPlayerFunction)
+    allP[1].addEventListener('click', () => {
       const informationText = `
       <h3>Help</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula imperdiet magna, at accumsan dui lobortis ut. Ut tincidunt quis nulla quis sagittis. In pellentesque, purus id auctor sagittis, ligula.</p>
       <button class="infoContentBtn">OK</button>
-      `;
-      infoDiv.setAttribute("class", "info-div-content");
-      infoDiv.innerHTML = informationText;
+      `
+      infoDiv.setAttribute('class', 'info-div-content')
+      infoDiv.innerHTML = informationText
       document
-        .querySelector(".infoContentBtn")
-        .addEventListener("click", () => {
-          infoDiv.style.display = "none";
-          infoDiv.setAttribute("class", ".info-div");
-        });
-    });
-  });
+        .querySelector('.infoContentBtn')
+        .addEventListener('click', () => {
+          infoDiv.style.display = 'none'
+          infoDiv.setAttribute('class', '.info-div')
+        })
+    })
+  })
 
   // Start match function
   function startMatchBtnFunction() {
@@ -406,7 +405,6 @@ function newMatch() {
 
     // Result funcion
     function result(number) {
-      console.log(allSelectedPl)
       let num = Number(number.join(''))
       let playerBox = document.querySelectorAll('.player-box')
       let numberOfPlayers = allSelectedPl.length
@@ -416,8 +414,6 @@ function newMatch() {
       let playerLegs = currentPlayer.legs
       let playerScore = currentPlayer.userScore
       playerScore = playerScore - num
-      console.log(currentPlayer)
-      console.log(currentPlayer.legs)
       allSelectedPl[select].userScore = playerScore
       let playerToPlay = currentPlayer.toPlay
       playerToPlay = 'player to play'
@@ -435,7 +431,13 @@ function newMatch() {
       <div class="to-play-box">${`leads by ${num}`}</div>
       `
       playerBox[select].innerHTML = playerBoxContent
-      
+
+      // Winner
+      if (playerLegs === 3 && playerScore <= 0) {
+        alert(`Winner is ${playerName} - ${playerNickName}`)
+        location.reload()
+      }
+
       switch (numberOfPlayers) {
         case 1:
           select = 0
@@ -447,7 +449,9 @@ function newMatch() {
             playerBox[select + 1].childNodes[7].innerHTML = 'to play'
             select++
           } else {
-            playerBox[select - (numberOfPlayers - 1)].classList.add('current-player')
+            playerBox[select - (numberOfPlayers - 1)].classList.add(
+              'current-player'
+            )
             playerBox[select].classList.remove('current-player')
             playerBox[select - (numberOfPlayers - 1)].childNodes[7].innerHTML =
               'to play'
@@ -495,13 +499,10 @@ function newMatch() {
         playerLegs = playerLegs
       } else {
         if (select === 0) {
-          console.log('userScore je tacno 0')
           allSelectedPl[numberOfPlayers - 1].legs = playerLegs + 1
           allSelectedPl[numberOfPlayers - 1].userScore = 501
           startMatchBtnFunction()
         } else {
-          console.log('ostalo po else')
-          console.log(playerLegs)
           allSelectedPl[select - 1].legs = playerLegs + 1
           allSelectedPl[select - 1].userScore = 501
           startMatchBtnFunction()
@@ -540,41 +541,39 @@ function newMatch() {
         Reserved.</small
       >
     </footer>
-    `;
+    `
 
-    myBody.innerHTML = selectPlayerPageContent;
-    let addPlayerBtn = document.getElementById("add-player-btn");
-    addPlayerBtn.style.cursor = "pointer";
+    myBody.innerHTML = selectPlayerPageContent
+    let addPlayerBtn = document.getElementById('add-player-btn')
+    addPlayerBtn.style.cursor = 'pointer'
 
-    let selectPlayerBody = document.querySelector(".select-player-body");
+    let selectPlayerBody = document.querySelector('.select-player-body')
     allUsers.forEach((user) => {
       let allUserToSet = `
     <div class="selected-player-box" data-select-id="${user.id}">
       <h4>${user.playerName}</h4>
       <p>${user.playerNickName}</p>
     </div>
-    `;
-      selectPlayerBody.innerHTML += allUserToSet;
-    });
+    `
+      selectPlayerBody.innerHTML += allUserToSet
+    })
 
     // Select the player in the selected player page
-    let allSelectedPlayerBox = document.querySelectorAll(
-      ".selected-player-box"
-    );
+    let allSelectedPlayerBox = document.querySelectorAll('.selected-player-box')
     allSelectedPlayerBox.forEach((playerBox) => {
-      playerBox.style.cursor = "pointer";
-      playerBox.addEventListener("click", selectedPlayer);
-    });
+      playerBox.style.cursor = 'pointer'
+      playerBox.addEventListener('click', selectedPlayer)
+    })
 
     function selectedPlayer() {
-      let playerId = this.getAttribute("data-select-id");
-      let selectedPl = allUsers[playerId];
-      allSelectedPl.push(selectedPl);
-      newMatch();
+      let playerId = this.getAttribute('data-select-id')
+      let selectedPl = allUsers[playerId]
+      allSelectedPl.push(selectedPl)
+      newMatch()
     }
 
     // Add player function
-    addPlayerBtn.addEventListener("click", addPlayerFunction);
+    addPlayerBtn.addEventListener('click', addPlayerFunction)
     function addPlayerFunction() {
       let addPlayerPageContent = `
      <header class="my-header">
@@ -605,60 +604,60 @@ function newMatch() {
         Reserved.</small
       >
     </footer>
-    `;
-      myBody.innerHTML = addPlayerPageContent;
-      let addPlBtn = document.getElementById("addPlayer-btn");
-      addPlBtn.style.cursor = "pointer";
-      let userName = document.getElementById("user-name");
-      let userNickName = document.getElementById("user-nickName");
-      let okBtn = document.getElementById("okBtn");
-      let cancelBtn = document.getElementById("cancelBtn");
+    `
+      myBody.innerHTML = addPlayerPageContent
+      let addPlBtn = document.getElementById('addPlayer-btn')
+      addPlBtn.style.cursor = 'pointer'
+      let userName = document.getElementById('user-name')
+      let userNickName = document.getElementById('user-nickName')
+      let okBtn = document.getElementById('okBtn')
+      let cancelBtn = document.getElementById('cancelBtn')
 
-      cancelBtn.addEventListener("click", selectPlayerFunction);
+      cancelBtn.addEventListener('click', selectPlayerFunction)
 
-      okBtn.addEventListener("click", () => {
-        let playerName = userName.value;
-        let playerNickName = userNickName.value;
-        let userId = allUsers.length;
+      okBtn.addEventListener('click', () => {
+        let playerName = userName.value
+        let playerNickName = userNickName.value
+        let userId = allUsers.length
         newUser = {
           playerName: playerName,
           playerNickName: playerNickName,
           legs: 1,
           userScore: 501,
-          toPlay: "",
+          toPlay: '',
           id: userId,
-        };
-        if (newUser.playerName !== "" && newUser.playerNickName !== "") {
-          let copyAllUsers = [...allUsers, newUser];
-          allUsers = copyAllUsers;
+        }
+        if (newUser.playerName !== '' && newUser.playerNickName !== '') {
+          let copyAllUsers = [...allUsers, newUser]
+          allUsers = copyAllUsers
           newUser = {
-            playerName: "",
-            playerNickName: "",
+            playerName: '',
+            playerNickName: '',
             legs: 1,
             userScore: 501,
-            toPlay: "",
+            toPlay: '',
             id: null,
-          };
-          localStorage.setItem("DartsUsers", JSON.stringify(allUsers));
-          selectPlayerFunction();
+          }
+          localStorage.setItem('DartsUsers', JSON.stringify(allUsers))
+          selectPlayerFunction()
         } else {
-          addPlayerFunction();
+          addPlayerFunction()
         }
-      });
+      })
     }
   }
 
   // Select team function
   function selectTeamFunction() {
-    console.log("select team function");
+    console.log('select team function')
   }
 
   // Clear player function
   function clearPlayerFunction() {
-    let infoDiv = document.querySelector(".info-div");
-    infoDiv.style.display = "none";
-    allSelectedPl = [];
-    newMatch();
+    let infoDiv = document.querySelector('.info-div')
+    infoDiv.style.display = 'none'
+    allSelectedPl = []
+    newMatch()
   }
 }
 // New Match function END
