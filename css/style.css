@@ -287,6 +287,27 @@ aside {
   padding: 10px;
   background-color: var(--secondary-color);
 }
+.selected-player-box {
+  position: relative;
+}
+.select-delete-div {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  min-width: 150px;
+  min-height: 30px;
+  border: 1px solid white;
+  padding: 10px 20px;
+}
+.sel-players:hover {
+  text-decoration: underline;
+  color: #ccc;
+}
+.name-select-user {
+  cursor: crosshair;
+  color: yellow;
+  font-weight: bold;
+}
 
 /* Add player */
 .add-player-header {

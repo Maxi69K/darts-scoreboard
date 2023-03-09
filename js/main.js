@@ -612,8 +612,8 @@ function newMatch() {
     let addPlayerBtn = document.getElementById('add-player-btn')
     let selectPlayerBtn = document.getElementById('select-player-btn')
     addPlayerBtn.style.cursor = 'pointer'
-
     let selectPlayerBody = document.querySelector('.select-player-body')
+
     allUsers.forEach((user) => {
       let allUserToSet = `
     <div class="selected-player-box" data-select-id="${user.id}">
@@ -665,10 +665,33 @@ function newMatch() {
     })
 
     function selectedPlayer() {
-      let playerId = this.getAttribute('data-select-id')
-      let selectedPl = allUsers[playerId]
-      allSelectedPl.push(selectedPl)
-      newMatch()
+      let playerNickName = this.children[1].innerText
+      div.setAttribute('class', 'info-div')
+      selectPlayerHeader.appendChild(div)
+      let infoDiv = document.querySelector('.info-div')
+      infoDiv.style.display = 'block'
+
+      let selectOrDeleteContent = `
+      <div class="close">&#10540;</div>
+      <p class="name-select-user">&#10100; ${playerNickName} &#10101; &#10004;</p>
+      <p class="sel-players">select to play</p>
+      <p class="sel-players">delete from list</p>
+      `
+      infoDiv.innerHTML = selectOrDeleteContent
+
+      let allP = document.querySelectorAll('.info-div > p')
+      allP[1].addEventListener('click', () => {
+        let playerId = Number(this.getAttribute('data-select-id'))
+        let selectedPl = allUsers[playerId]
+        allSelectedPl.push(selectedPl)
+        newMatch()
+      })
+      allP[2].addEventListener('click', () => {
+        let playerId = Number(this.getAttribute('data-select-id'))
+        allUsers.splice(playerId, 1)
+        localStorage.setItem('DartsUsers', JSON.stringify(allUsers))
+        newMatch()
+      })
     }
 
     // Add player function
