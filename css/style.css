@@ -94,6 +94,7 @@ header {
   padding: 40px 30px 40px;
   background-color: var(--secondary-color);
   cursor: pointer;
+  z-index: 2;
 }
 .info-div-content,
 .length-div-content {
@@ -198,7 +199,7 @@ aside {
   font-size: 1.2rem;
   font-weight: bold;
   border: none;
-  text-align: right;
+  text-align: center;
   border-radius: 50%;
 }
 .setBtn {
@@ -346,7 +347,6 @@ aside {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
 }
 .start-match-svg {
   display: flex;
@@ -488,5 +488,8 @@ td {
   aside {
     border-right: 5px solid var(--secondary-color);
     border-left: 5px solid var(--secondary-color);
+  }
+  .length-div-content input {
+    text-align: right;
   }
 }

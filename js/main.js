@@ -244,9 +244,6 @@ function newMatch() {
   // Set Match Length Function
   setMatchLength.addEventListener('click', selectMatchLengthFunction)
   function selectMatchLengthFunction() {
-    //div.setAttribute('class', 'length-div')
-    //myHeader.appendChild(div)
-    //let lengthDiv = document.querySelector('.length-div')
     let setLength = `
     <div class="length-div-content">
       <form action="#">
@@ -308,9 +305,9 @@ function newMatch() {
 
     if (allSelectedPl.length !== 0) {
       let startMatchContent = `
-    <header class="my-header">
+    <header id="start-match-header" class="my-header">
       <h1><a href="index.html">In Game</a></h1>
-      <div class="menu-btn">&#8285;</div>
+      <div id="ingameBtn" class="menu-btn">&#8285;</div>
     </header>
     <main>
     <div class="start-match-page">
@@ -350,7 +347,42 @@ function newMatch() {
     </footer>
     `
       myBody.innerHTML = startMatchContent
+
+      let startMatchHeader = document.getElementById('start-match-header')
+      let ingameBtn = document.getElementById('ingameBtn')
       let startMatchBody = document.querySelector('.start-match-body')
+
+      ingameBtn.addEventListener('click', () => {
+        div.setAttribute('class', 'info-div')
+        startMatchHeader.appendChild(div)
+        let infoDiv = document.querySelector('.info-div')
+        infoDiv.style.display = 'block'
+        const startMatchText = `
+      <div class="close">&#10540;</div>
+      <p>Help</p></br>
+      <p>&#10510; Back</p>
+      `
+        infoDiv.innerHTML = startMatchText
+
+        let allP = document.querySelectorAll('.info-div > p')
+        allP.forEach((par) => (par.style.cursor = 'pointer'))
+        allP[0].addEventListener('click', () => {
+          const informationText = `
+      <h3>Help</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula imperdiet magna, at accumsan dui lobortis ut. Ut tincidunt quis nulla quis sagittis. In pellentesque, purus id auctor sagittis, ligula.</p>
+      <button class="infoContentBtn">OK</button>
+      `
+          infoDiv.setAttribute('class', 'info-div-content')
+          infoDiv.innerHTML = informationText
+          document
+            .querySelector('.infoContentBtn')
+            .addEventListener('click', () => {
+              infoDiv.style.display = 'none'
+              infoDiv.setAttribute('class', '.info-div')
+            })
+        })
+        allP[1].addEventListener('click', newMatch)
+      })
 
       // Scoreboard
       currentPlayer = allSelectedPl[0]
@@ -559,7 +591,7 @@ function newMatch() {
     <div class="svg-container">
       <svg id="add-player-btn" xml:space="preserve" width="200" height="200" fill="#fff" stroke="#fff" viewBox="0 0 512 512"><path d="M451.368 229.053v-60.632h-40.421v60.632h-60.631v40.421h60.631v60.631h40.421v-60.631H512v-40.421zM239.915 276.724c33.652-18.238 56.506-53.864 56.506-94.829 0-59.531-48.259-107.789-107.789-107.789s-107.79 48.258-107.79 107.789c0 40.965 22.854 76.591 56.506 94.829C66.732 283.298 0 352.877 0 437.895h377.263c0-85.018-66.732-154.597-137.348-161.171z"/></svg>
     </div>
-    <div id="newMatch-btn" class="menu-btn">&#8285;</div>
+    <div id="select-player-btn" class="menu-btn">&#8285;</div>
     </div>
   </header>
     <main>
@@ -576,7 +608,9 @@ function newMatch() {
     `
 
     myBody.innerHTML = selectPlayerPageContent
+    let selectPlayerHeader = document.getElementById('select-player-header')
     let addPlayerBtn = document.getElementById('add-player-btn')
+    let selectPlayerBtn = document.getElementById('select-player-btn')
     addPlayerBtn.style.cursor = 'pointer'
 
     let selectPlayerBody = document.querySelector('.select-player-body')
@@ -588,6 +622,39 @@ function newMatch() {
     </div>
     `
       selectPlayerBody.innerHTML += allUserToSet
+    })
+
+    //Select Player button function
+    selectPlayerBtn.addEventListener('click', () => {
+      div.setAttribute('class', 'info-div')
+      selectPlayerHeader.appendChild(div)
+      let infoDiv = document.querySelector('.info-div')
+      infoDiv.style.display = 'block'
+      const selectPlayerText = `
+      <div class="close">&#10540;</div>
+      <p>Help</p></br>
+      <p>&#10510; Back</p>
+      `
+      infoDiv.innerHTML = selectPlayerText
+
+      let allP = document.querySelectorAll('.info-div > p')
+      allP.forEach((par) => (par.style.cursor = 'pointer'))
+      allP[0].addEventListener('click', () => {
+        const informationText = `
+      <h3>Help</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula imperdiet magna, at accumsan dui lobortis ut. Ut tincidunt quis nulla quis sagittis. In pellentesque, purus id auctor sagittis, ligula.</p>
+      <button class="infoContentBtn">OK</button>
+      `
+        infoDiv.setAttribute('class', 'info-div-content')
+        infoDiv.innerHTML = informationText
+        document
+          .querySelector('.infoContentBtn')
+          .addEventListener('click', () => {
+            infoDiv.style.display = 'none'
+            infoDiv.setAttribute('class', '.info-div')
+          })
+      })
+      allP[1].addEventListener('click', newMatch)
     })
 
     // Select the player in the selected player page
@@ -608,7 +675,7 @@ function newMatch() {
     addPlayerBtn.addEventListener('click', addPlayerFunction)
     function addPlayerFunction() {
       let addPlayerPageContent = `
-     <header class="my-header">
+     <header id="new-player-header" class="my-header">
       <h1><a href="index.html">New Player</a></h1>
       <div id="addPlayer-btn" class="menu-btn">&#8285;</div>
     </header>
@@ -638,12 +705,45 @@ function newMatch() {
     </footer>
     `
       myBody.innerHTML = addPlayerPageContent
+      let newPlayerHeader = document.getElementById('new-player-header')
       let addPlBtn = document.getElementById('addPlayer-btn')
       addPlBtn.style.cursor = 'pointer'
       let userName = document.getElementById('user-name')
       let userNickName = document.getElementById('user-nickName')
       let okBtn = document.getElementById('okBtn')
       let cancelBtn = document.getElementById('cancelBtn')
+
+      addPlBtn.addEventListener('click', () => {
+        div.setAttribute('class', 'info-div')
+        newPlayerHeader.appendChild(div)
+        let infoDiv = document.querySelector('.info-div')
+        infoDiv.style.display = 'block'
+        const newPlayerText = `
+      <div class="close">&#10540;</div>
+      <p>Help</p></br>
+      <p>&#10510; Back</p>
+      `
+        infoDiv.innerHTML = newPlayerText
+
+        let allP = document.querySelectorAll('.info-div > p')
+        allP.forEach((par) => (par.style.cursor = 'pointer'))
+        allP[0].addEventListener('click', () => {
+          const informationText = `
+      <h3>Help</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula imperdiet magna, at accumsan dui lobortis ut. Ut tincidunt quis nulla quis sagittis. In pellentesque, purus id auctor sagittis, ligula.</p>
+      <button class="infoContentBtn">OK</button>
+      `
+          infoDiv.setAttribute('class', 'info-div-content')
+          infoDiv.innerHTML = informationText
+          document
+            .querySelector('.infoContentBtn')
+            .addEventListener('click', () => {
+              infoDiv.style.display = 'none'
+              infoDiv.setAttribute('class', '.info-div')
+            })
+        })
+        allP[1].addEventListener('click', selectPlayerFunction)
+      })
 
       cancelBtn.addEventListener('click', selectPlayerFunction)
 
