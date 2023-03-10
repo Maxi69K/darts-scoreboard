@@ -274,7 +274,7 @@ function newMatch() {
     infoDiv.style.display = 'block'
     const infoText = `
     <div class="close">&#10540;</div>
-    <p>Clear Players</p></br>
+    <p>Clear all players</p></br>
     <p>Help</p></br>
     <p><a href="index.html">&#10510; Back</a></p>
     `
@@ -632,6 +632,7 @@ function newMatch() {
       infoDiv.style.display = 'block'
       const selectPlayerText = `
       <div class="close">&#10540;</div>
+      <p>Delete all players</p></br>
       <p>Help</p></br>
       <p>&#10510; Back</p>
       `
@@ -640,6 +641,12 @@ function newMatch() {
       let allP = document.querySelectorAll('.info-div > p')
       allP.forEach((par) => (par.style.cursor = 'pointer'))
       allP[0].addEventListener('click', () => {
+        allUsers = []
+        allSelectedPl = []
+        localStorage.setItem('DartsUsers', JSON.stringify(allUsers))
+        newMatch()
+      })
+      allP[1].addEventListener('click', () => {
         const informationText = `
       <h3>Help</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula imperdiet magna, at accumsan dui lobortis ut. Ut tincidunt quis nulla quis sagittis. In pellentesque, purus id auctor sagittis, ligula.</p>
@@ -654,7 +661,7 @@ function newMatch() {
             infoDiv.setAttribute('class', '.info-div')
           })
       })
-      allP[1].addEventListener('click', newMatch)
+      allP[2].addEventListener('click', newMatch)
     })
 
     // Select the player in the selected player page
