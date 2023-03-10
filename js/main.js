@@ -71,17 +71,29 @@ function infoFunction() {
   // All information in three paragraph
   const informationText = `
     <h3>Information</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula imperdiet magna, at accumsan dui lobortis ut. Ut tincidunt quis nulla quis sagittis. In pellentesque, purus id auctor sagittis, ligula.</p>
+    <p>Darts Scoreboard</p><br>
+    <p>This applications is free.</p>
+    <p>Version: 1.0.0</p><br>
+    <p>Latest Changes:</p>
+    <p>1.Deleting all players from the list at once.</p>
+    <p>2.Minor cosmetic changes.</p>
+    <p>3.Bug fixes.</p><br>
+    <p>Additional explanations:</p>
+    <p>The application was made for the purpose of testing candidates applying for the position of web developer at Videobolt.</p>
     <button class="infoContentBtn">OK</button>
     `
   const PrivacyPolicyText = `
     <h3>Privacy Policy</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla semper ultricies augue, sit amet malesuada diam rhoncus non. Sed id nisi a felis tristique ultrices. Donec non semper velit. Curabitur volutpat bibendum nulla at tincidunt. Vivamus lobortis tellus et mauris hendrerit, eu convallis sapien finibus. Vestibulum tempus volutpat justo, nec pellentesque dolor elementum a. Duis et fringilla tellus, in suscipit diam. Sed sodales nulla vitae cursus feugiat. Nunc nec justo id turpis lacinia ultrices. Etiam euismod ac risus accumsan venenatis. Suspendisse accumsan fermentum nibh. Fusce ut neque quis metus aliquam consequat at in dui. Nullam condimentum nisl odio, malesuada tincidunt tellus vulputate ac. Donec sapien ipsum, pharetra nec risus et, vulputate ultricies nunc. Maecenas tristique ac risus sed viverra.</p>
+    <p>The application was made according to the task of the Videobolt company, and it is forbidden to copy the code and use it by presenting it to anyone as your own.</p><br>
+    <p>All rights reserved.</p>
     <button class="infoContentBtn">OK</button>
     `
   const helpText = `
     <h3>Help</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae dolor accumsan, ullamcorper ex sed, posuere sapien. Curabitur lobortis tempus quam, eget volutpat nisi luctus nec. Aenean tellus sapien, suscipit sit amet vulputate quis, commodo ac purus. Maecenas vestibulum vel sem pellentesque imperdiet. Curabitur faucibus condimentum sapien. Quisque eu sodales libero. Fusce a commodo orci, non condimentum purus. Suspendisse vitae eleifend dolor. Sed sed elit ac odio vestibulum sagittis. Pellentesque lobortis mi quis pulvinar malesuada. Ut nec cursus quam. Ut id lacus sed risus vulputate viverra. Vestibulum consectetur nibh non tellus sodales euismod. In et nunc ligula. Pellentesque finibus laoreet sem elementum fermentum.</p>
+    <p>The application is designed to track the scores of players from 501 to zero.</p>
+    <p>It is usually set to play 3 rounds, but you can set it as desired from 1 to 30 rounds.</p>
+    <p>When the first player reaches zero and finishes the last round, the application presents the winner and ends the game.</p>
+    <p>You can follow the score of one or more players.</p>
     <button class="infoContentBtn">OK</button>
     `
   allP.forEach((par) => {
@@ -274,7 +286,7 @@ function newMatch() {
     infoDiv.style.display = 'block'
     const infoText = `
     <div class="close">&#10540;</div>
-    <p>Clear all players</p></br>
+    <p>Clear all</p></br>
     <p>Help</p></br>
     <p><a href="index.html">&#10510; Back</a></p>
     `
@@ -285,7 +297,12 @@ function newMatch() {
     allP[1].addEventListener('click', () => {
       const informationText = `
       <h3>Help</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula imperdiet magna, at accumsan dui lobortis ut. Ut tincidunt quis nulla quis sagittis. In pellentesque, purus id auctor sagittis, ligula.</p>
+      <p>Only selected players who are ready to play are displayed on this page.</p><br>
+      <p>By clicking the button at the bottom of the page, all players on the list enter the game.</p><br>
+      <p>You can delete individual players from the list by clicking on the desired name, and to delete the entire list, click on clear all in the upper right corner.</p><br>
+      <p>By clicking on fixed match length, you set the number of game rounds from 1 to 30.</p><br>
+      <p>The default value is 3.</p><br>
+      <p>On Back you return to the previous page</p>
       <button class="infoContentBtn">OK</button>
       `
       infoDiv.setAttribute('class', 'info-div-content')
@@ -369,7 +386,13 @@ function newMatch() {
         allP[0].addEventListener('click', () => {
           const informationText = `
       <h3>Help</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula imperdiet magna, at accumsan dui lobortis ut. Ut tincidunt quis nulla quis sagittis. In pellentesque, purus id auctor sagittis, ligula.</p>
+      <p>1. This is the page where you follow the players who are in the game and everyone's starting score is 501.</p><br>
+      <p>The player whose turn it is to play is marked in green.</p><br>
+      <p>Enter the number of points won in the field below the players and by clicking the enter button, the number of points is subtracted from the total remaining number and transferred to the next player.</p><br>
+      <p>If you entered the wrong number, simply delete it by clicking on the X and enter the correct number.</p><br>
+      <p>The player who reaches zero first goes to the next round and continues the game.</p><br>
+      <p>The player who reaches zero first and is in the last set circle is declared the winner and the game is stopped.</p><br>
+      <p>Press the back button to return to the previous page.</p>
       <button class="infoContentBtn">OK</button>
       `
           infoDiv.setAttribute('class', 'info-div-content')
@@ -632,7 +655,7 @@ function newMatch() {
       infoDiv.style.display = 'block'
       const selectPlayerText = `
       <div class="close">&#10540;</div>
-      <p>Delete all players</p></br>
+      <p>Delete all</p></br>
       <p>Help</p></br>
       <p>&#10510; Back</p>
       `
@@ -649,7 +672,9 @@ function newMatch() {
       allP[1].addEventListener('click', () => {
         const informationText = `
       <h3>Help</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula imperdiet magna, at accumsan dui lobortis ut. Ut tincidunt quis nulla quis sagittis. In pellentesque, purus id auctor sagittis, ligula.</p>
+      <p>This page shows a saved list of players you have ever entered.</p><br>
+      <p>Clicking on a certain player opens a window with options to add him to the play list or to permanently delete him from the list.</p><br>
+      <p>By clicking on the add player icon, you are sent to the page for adding a new player.</p><br>
       <button class="infoContentBtn">OK</button>
       `
         infoDiv.setAttribute('class', 'info-div-content')
@@ -760,7 +785,10 @@ function newMatch() {
         allP[0].addEventListener('click', () => {
           const informationText = `
       <h3>Help</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vehicula imperdiet magna, at accumsan dui lobortis ut. Ut tincidunt quis nulla quis sagittis. In pellentesque, purus id auctor sagittis, ligula.</p>
+      <p>On this page, you add a new player by entering the player's full name and surname in the first field and the player's nickname in the second field below.</p><br>
+      <p>When you have filled in all the fields, click OK.</p><br>
+      <p>If you want to cancel the entry of players, click the cancel button.</p><br>
+      <p>By clicking on the upper right "Back", you return to the previous page.</p>
       <button class="infoContentBtn">OK</button>
       `
           infoDiv.setAttribute('class', 'info-div-content')
