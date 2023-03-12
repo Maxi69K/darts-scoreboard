@@ -12,7 +12,7 @@ const header = `<header class="my-header"></header>`
 // Close button
 const closeBtn = `<div class="close">&#10540;</div>`
 
-// Players
+// All Players
 allUsers = []
 let newUser = {
   playerName: '',
@@ -22,7 +22,10 @@ let newUser = {
   toPlay: '',
   id: null,
 }
+// All selected players for game
 let allSelectedPl = []
+// All Selected Teams
+let allSelectedTeams = []
 // The player who currently plays
 let currentPlayer = {}
 let select = 0
@@ -43,6 +46,11 @@ function startFunction() {
     allSelectedPl = JSON.parse(localStorage.getItem('SelectedPlayers'))
   } else {
     allSelectedPl = allSelectedPl
+  }
+  if (localStorage.getItem('SelectedTeams')) {
+    allSelectedTeams = JSON.parse(localStorage.getItem('SelectedTeams'))
+  } else {
+    allSelectedTeams = allSelectedTeams
   }
 }
 
@@ -141,7 +149,7 @@ function infoFunction() {
 }
 // Info button functions in header END
 
-// Closse info box on click X
+// Close info box on click X
 window.onclick = function (event) {
   let infoDiv = document.querySelector('.info-div')
   if (event.target.matches('.close') && infoDiv != null) {
@@ -193,7 +201,7 @@ function newMatch() {
       <svg id="select-player" fill="none" stroke="#fff" viewBox="0 0 24 24"><g fill="#fff"><rect/><path fill-rule="evenodd" d="M6 8a6 6 0 1 1 12 0A6 6 0 0 1 6 8ZM5.43 16.902C7.057 16.223 9.224 16 12 16c2.771 0 4.935.22  6.559.898 1.742.727 2.812 1.963 3.382 3.76A1.03 1.03 0 0 1 20.959 22H3.035c-.69 0-1.188-.67-.978-1.335.568-1.797 1.634-3.033 3.374-3.762Z" clip-rule="evenodd"/></g></svg>
     </div>
     <div class="svg-container">
-      <svg id="select-team" fill="none" stroke="#fff" viewBox="0 0 24 24"><g fill="#fff"><rect/><path fill-rule="evenodd" d="M5 9.5a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0Z" clip-rule="evenodd"/><path d="M14.367 12.063a.197.197 0 0 0 .053.252 3.5 3.5 0 1 0 0-5.63.197.197 0 0 0-.053.252c.404.765.633 1.637.633 2.563 0 .926-.229 1.798-.633 2.563Z"/><path fill-rule="evenodd" d="M4.641 15.7c1.233-.536 2.85-.7 4.859-.7 2.011 0 3.63.165 4.862.7 1.343.585 2.16 1.58 2.587 2.984A1.02 1.02 0 0 1 15.974 20H3.028a1.02 1.02 0 0 1-.976-1.319c.428-1.404 1.245-2.398 2.59-2.982Z" clip-rule="evenodd"/><path d="M14.819 14.036c-.415.026-.439.582-.058.748 1.042.453 1.827 1.12 2.39 1.972.462.699 1.179 1.244 2.017 1.244h1.78c.707 0 1.224-.703.975-1.39a3.412 3.412 0 0 0-1.843-2.024c-.816-.38-1.837-.538-3.04-.585L17.02 14H17c-.71 0-1.45-.01-2.181.036Z"/></g></svg>
+      <svg id="select-team" fill="none" stroke="#fff" viewBox="0 0 24 24"><g fill="#fff"><path d="M1.5 6.5a5.5 5.5 0 1 1 11 0 5.5 5.5 0 0 1-11 0ZM14.5 6.5c0 1.5-.44 2.898-1.2 4.07a5.5 5.5 0 1 0 0-8.14 7.465 7.465 0 0 1 1.2 4.07ZM0 18a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v4a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1v-4ZM16 18v5h7a1 1 0 0 0 1-1v-4a4 4 0 0 0-4-4h-5.528A5.978 5.978 0 0 1 16 18Z"/></g></svg>
     </div>
     <div id="newMatch-btn" class="menu-btn">&#8285;</div>
     </div>
@@ -608,7 +616,7 @@ function newMatch() {
   // Select player function
   function selectPlayerFunction() {
     let selectPlayerPageContent = `
-   <header id="select-player-header" class="my-header">
+    <header id="select-player-header" class="my-header">
     <h1><a href="index.html">Select Player</a></h1>
     <div class="menu-content">
     <div class="svg-container">
@@ -616,10 +624,11 @@ function newMatch() {
     </div>
     <div id="select-player-btn" class="menu-btn">&#8285;</div>
     </div>
-  </header>
+    </header>
     <main>
-    <div class="select-player-page">
-      <div class="select-player-body"></div>
+      <div class="select-player-page">
+        <div class="select-player-body"></div>
+      </div>
     </main>
     <footer id="myFooter">
       <small
@@ -666,6 +675,7 @@ function newMatch() {
       allP[0].addEventListener('click', () => {
         allUsers = []
         allSelectedPl = []
+        allSelectedTeams = []
         localStorage.setItem('DartsUsers', JSON.stringify(allUsers))
         newMatch()
       })
@@ -674,7 +684,7 @@ function newMatch() {
       <h3>Help</h3>
       <p>This page shows a saved list of players you have ever entered.</p><br>
       <p>Clicking on a certain player opens a window with options to add him to the play list or to permanently delete him from the list.</p><br>
-      <p>By clicking on the add player icon, you are sent to the page for adding a new player.</p><br>
+      <p>By clicking on the add player icon, you are sent to the page for adding a new player.</p>
       <button class="infoContentBtn">OK</button>
       `
         infoDiv.setAttribute('class', 'info-div-content')
@@ -737,18 +747,19 @@ function newMatch() {
     <main>
     <div class="add-player-page">
       <div class="add-player-body">
-      <h4>NAME</h4>
-      <hr>
-      <form>
-      <div class="add-player-box">
-      <input type="text" id="user-name" placeholder="player name">
+        <h4>NAME</h4>
+        <hr>
+        <form>
+        <div class="add-player-box">
+        <input type="text" id="user-name" placeholder="player full name">
+        </div>
+        <div  class="add-player-box">
+        <input type="text" id="user-nickName" placeholder="player nickname">
+        </div>
+        <button id="cancelBtn" class="bottomBtn">CANCEL</button>
+        <button id="okBtn" class="bottomBtn">OK</button>
+        </form>
       </div>
-      <div  class="add-player-box">
-      <input type="text" id="user-nickName" placeholder="nickname">
-      </div>
-      <button id="cancelBtn" class="bottomBtn">CANCEL</button>
-      <button id="okBtn" class="bottomBtn">OK</button>
-      </form>
     </div>
     </main>
     <footer id="myFooter">
@@ -836,11 +847,256 @@ function newMatch() {
       })
     }
   }
+  // Select player function END
 
   // Select team function
   function selectTeamFunction() {
     console.log('select team function')
+    let selectTeamPageContent = `
+   <header id="select-team-header" class="my-header">
+    <h1><a href="index.html">Select Team</a></h1>
+    <div class="menu-content">
+    <div class="svg-container">
+      <svg id="add-team-btn" fill="none" stroke="#fff" viewBox="0 0 24 24"><path fill="#fff" fill-rule="evenodd" d="M6.833 11.833A2.92 2.92 0 0 0 9.75 8.917 2.92 2.92 0 0 0 6.833 6a2.92 2.92 0 0 0-2.916 2.917 2.92 2.92 0 0 0 2.916 2.916ZM21 15.333v-2.5h2.5v-1.666H21v-2.5h-1.667v2.5h-2.5v1.666h2.5v2.5H21ZM6.833 13.292c-1.95 0-5.833.975-5.833 2.916v1.459h11.667v-1.459c0-1.941-3.884-2.916-5.834-2.916Zm0 1.666c-1.491 0-3.183.559-3.883 1.042h7.767c-.7-.483-2.392-1.042-3.884-1.042Zm1.25-6.041c0-.692-.558-1.25-1.25-1.25-.691 0-1.25.558-1.25 1.25 0 .691.559 1.25 1.25 1.25.692 0 1.25-.559 1.25-1.25ZM11 11.833a2.92 2.92 0 0 0 2.917-2.916 2.92 2.92 0 0 0-3.509-2.859 4.514 4.514 0 0 1-.017 5.708c.2.042.4.067.609.067Zm3.333 4.375c0-1.133-.566-2.016-1.4-2.691 1.867.391 3.9 1.283 3.9 2.691v1.459h-2.5v-1.459Z" clip-rule="evenodd"/></svg>
+    </div>
+    <div id="select-team-btn" class="menu-btn">&#8285;</div>
+    </div>
+  </header>
+    <main>
+    <div class="select-team-page">
+      <div class="select-team-body"></div>
+    </div>
+    </main>
+    <footer id="myFooter">
+      <small
+        >&copy; 2023 Darts Scoreboard by
+        <a target="_blank" href="https://webdizajnmaxi.eu.org">Maxi</a>. All Rights
+        Reserved.</small
+      >
+    </footer>
+    `
+
+    myBody.innerHTML = selectTeamPageContent
+    let selectTeamHeader = document.getElementById('select-team-header')
+    let addTeamBtn = document.getElementById('add-team-btn')
+    let selectTeamBtn = document.getElementById('select-team-btn')
+    addTeamBtn.style.cursor = 'pointer'
+    let selectTeamBody = document.querySelector('.select-team-body')
+
+    allSelectedTeams.forEach((team) => {
+      let allTeamsToSet = `
+    <div class="selected-player-box" data-select-id="${team.id}">
+      <h4>${team.playerNickName}</h4>
+      <p>${team.playerName}</p>
+    </div>
+    `
+      selectTeamBody.innerHTML += allTeamsToSet
+    })
+
+    let selectedPlayerBox = document.querySelectorAll('.selected-player-box')
+    selectedPlayerBox.forEach((playerBox) => {
+      playerBox.style.cursor = 'pointer'
+      playerBox.addEventListener('click', addTeamToMatch)
+    })
+
+    // Add team to match function
+    function addTeamToMatch() {
+      let teamId = Number(this.getAttribute('data-select-id'))
+      let selectedTm = allSelectedTeams[teamId]
+      let teamNickName = selectedTm.playerNickName
+
+      div.setAttribute('class', 'info-div')
+      selectTeamHeader.appendChild(div)
+      let infoDiv = document.querySelector('.info-div')
+      infoDiv.style.display = 'block'
+
+      let selectOrDeleteTeamContent = `
+      <div class="close">&#10540;</div>
+      <p class="name-select-user">&#10100; ${teamNickName} &#10101; &#10004;</p>
+      <p class="sel-players">select to play</p>
+      <p class="sel-players">delete from list</p>
+      `
+      infoDiv.innerHTML = selectOrDeleteTeamContent
+
+      let allP = document.querySelectorAll('.info-div > p')
+      allP[1].addEventListener('click', () => {
+        console.log(allSelectedPl)
+        let teamId = Number(this.getAttribute('data-select-id'))
+        let selectedTm = allSelectedTeams[teamId]
+        allSelectedPl.push(selectedTm)
+        newMatch()
+      })
+      allP[2].addEventListener('click', () => {
+        let teamId = Number(this.getAttribute('data-select-id'))
+        allSelectedTeams.splice(teamId, 1)
+        allUsers.splice(teamId, 1)
+        localStorage.setItem('SelectedTeams', JSON.stringify(allSelectedTeams))
+        newMatch()
+      })
+    }
+
+    //Select Player button function
+    selectTeamBtn.addEventListener('click', () => {
+      div.setAttribute('class', 'info-div')
+      selectTeamHeader.appendChild(div)
+      let infoDiv = document.querySelector('.info-div')
+      infoDiv.style.display = 'block'
+      const selectTeamText = `
+      <div class="close">&#10540;</div>
+      <p>Delete all</p></br>
+      <p>Help</p></br>
+      <p>&#10510; Back</p>
+      `
+      infoDiv.innerHTML = selectTeamText
+
+      let allP = document.querySelectorAll('.info-div > p')
+      allP.forEach((par) => (par.style.cursor = 'pointer'))
+      allP[0].addEventListener('click', () => {
+        allSelectedTeams = []
+        localStorage.setItem('DartsUsers', JSON.stringify(allUsers))
+        newMatch()
+      })
+      allP[1].addEventListener('click', () => {
+        const informationText = `
+      <h3>Help</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu nisl mauris. Sed enim nulla, scelerisque at fermentum in, vulputate ac diam. Donec et dui felis. Duis aliquet euismod convallis.</p>
+      <button class="infoContentBtn">OK</button>
+      `
+        infoDiv.setAttribute('class', 'info-div-content')
+        infoDiv.innerHTML = informationText
+        document
+          .querySelector('.infoContentBtn')
+          .addEventListener('click', () => {
+            infoDiv.style.display = 'none'
+            infoDiv.setAttribute('class', '.info-div')
+          })
+      })
+      allP[2].addEventListener('click', newMatch)
+    })
+    //Select Player button function END
+
+    // Add team function
+    addTeamBtn.addEventListener('click', addTeamFunction)
+    function addTeamFunction() {
+      let addTeamPageContent = `
+     <header id="new-team-header" class="my-header">
+      <h1><a href="index.html">New Team</a></h1>
+      <div id="addTeam-btn" class="menu-btn">&#8285;</div>
+    </header>
+    <main>
+      <div class="add-team-page">
+        <div class="add-team-body">
+            <form>
+            </form>
+          <button id="cancelBtn" class="bottomBtn">CANCEL</button>
+          <button id="okBtn" class="bottomBtn">OK</button>
+        </div>
+      </div>
+    </main>
+    <footer id="myFooter">
+      <small
+        >&copy; 2023 Darts Scoreboard by
+        <a target="_blank" href="https://webdizajnmaxi.eu.org">Maxi</a>. All Rights
+        Reserved.</small
+      >
+    </footer>
+    `
+      myBody.innerHTML = addTeamPageContent
+      let newTeamHeader = document.getElementById('new-team-header')
+      let addTeamBodyForm = document.querySelector('.add-team-body > form')
+      let addTeamBtn = document.getElementById('addTeam-btn')
+      addTeamBtn.style.cursor = 'pointer'
+      let okBtn = document.getElementById('okBtn')
+      let cancelBtn = document.getElementById('cancelBtn')
+
+      allUsers.forEach((user) => {
+        let allUserToSet = `
+          <div class="selected-player-box" data-select-id="${user.id}">
+          <form>
+            <label for="playerName_${user.id}">${user.playerName}</label>
+            <input type="checkbox" id="playerName_${user.id}">
+            <p>${user.playerNickName}</p>
+          </form>
+          </div>
+          `
+        addTeamBodyForm.innerHTML += allUserToSet
+      })
+
+      addTeamBtn.addEventListener('click', () => {
+        div.setAttribute('class', 'info-div')
+        newTeamHeader.appendChild(div)
+        let infoDiv = document.querySelector('.info-div')
+        infoDiv.style.display = 'block'
+        const newTeamText = `
+      <div class="close">&#10540;</div>
+      <p>Help</p></br>
+      <p>&#10510; Back</p>
+      `
+        infoDiv.innerHTML = newTeamText
+
+        let allP = document.querySelectorAll('.info-div > p')
+        allP.forEach((par) => (par.style.cursor = 'pointer'))
+        allP[0].addEventListener('click', () => {
+          const informationText = `
+      <h3>Help</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu nisl mauris. Sed enim nulla, scelerisque at fermentum in, vulputate ac diam. Donec et dui felis. Duis aliquet euismod convallis.</p>
+      <button class="infoContentBtn">OK</button>
+      `
+          infoDiv.setAttribute('class', 'info-div-content')
+          infoDiv.innerHTML = informationText
+          document
+            .querySelector('.infoContentBtn')
+            .addEventListener('click', () => {
+              infoDiv.style.display = 'none'
+              infoDiv.setAttribute('class', '.info-div')
+            })
+        })
+        allP[1].addEventListener('click', selectTeamFunction)
+      })
+
+      cancelBtn.addEventListener('click', selectTeamFunction)
+
+      okBtn.addEventListener('click', () => {
+        let selectedPlayerBoxes = document.querySelectorAll(
+          '.selected-player-box'
+        )
+        let selectedTeamNames = []
+        let selectedTeamNickNames = []
+        selectedPlayerBoxes.forEach((box) => {
+          if (box.children[1].checked) {
+            let playerIndex = Number(box.getAttribute('data-select-id'))
+            let playerNameT = allUsers[playerIndex].playerName
+            let playerNickNameT = allUsers[playerIndex].playerNickName
+            selectedTeamNames.push(playerNameT)
+            selectedTeamNickNames.push(playerNickNameT)
+          }
+        })
+
+        if (selectedTeamNames.length > 1) {
+          let teamName = selectedTeamNames.join(', ')
+          let teamNickName = selectedTeamNickNames.join(' & ')
+          let teamForPlay = {
+            playerName: teamName,
+            playerNickName: teamNickName,
+            legs: 1,
+            userScore: 501,
+            toPlay: '',
+            id: null,
+          }
+
+          let copyAllSelectedTeams = [...allSelectedTeams, teamForPlay]
+          allSelectedTeams = copyAllSelectedTeams
+          allSelectedTeams.forEach((team, index) => (team.id = index))
+          localStorage.setItem(
+            'SelectedTeams',
+            JSON.stringify(allSelectedTeams)
+          )
+          selectTeamFunction()
+        }
+      })
+    }
   }
+  // Select team function END
 
   // Clear player function
   function clearPlayerFunction() {
