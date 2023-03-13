@@ -100,8 +100,8 @@ header {
 .length-div-content {
   position: absolute;
   top: 70px;
-  left: 50px;
-  right: 50px;
+  left: 0;
+  right: 0;
   padding: 50px 50px 100px;
   background-color: var(--secondary-color);
   font-size: 0.8rem;
@@ -248,7 +248,7 @@ aside {
 .new-match-body {
   position: relative;
   width: 100%;
-  height: 62vh;
+  height: 508px;
   padding: 10px;
   background-color: var(--secondary-color);
 }
@@ -262,7 +262,11 @@ aside {
   padding: 10px 0;
   text-align: center;
   background-color: var(--background-color);
+  color: var(--primary-color);
   cursor: pointer;
+}
+#start-match-btn:hover {
+  color: #ccc;
 }
 
 /* Select player */
@@ -285,7 +289,7 @@ aside {
 .select-team-body {
   position: relative;
   width: 100%;
-  height: 79vh;
+  height: 611px;
   padding: 10px;
   background-color: var(--secondary-color);
 }
@@ -338,7 +342,7 @@ aside {
 .add-team-body {
   position: relative;
   width: 100%;
-  height: 79vh;
+  height: 611px;
   padding: 10px;
   background-color: var(--secondary-color);
 }
@@ -386,6 +390,7 @@ aside {
 }
 .start-match-page {
   width: 100%;
+  min-height: 611px;
   background-color: var(--secondary-color);
 }
 .start-match-body {
@@ -433,6 +438,7 @@ aside {
 /* Keyboard */
 .start-match-keyboard {
   width: 100%;
+  z-index: 5;
 }
 .start-match-keyboard table {
   max-width: 500px;
@@ -486,7 +492,6 @@ td {
 /*********************************************
                @media Queries
 *********************************************/
-/* @media print {} */
 
 @media all and (min-width: 576px) {
   .my-header {
@@ -494,7 +499,11 @@ td {
     width: 550px;
     margin: auto;
   }
-  .home-page,
+  .home-page {
+    width: 550px;
+    height: 808px;
+    margin: auto;
+  }
   .new-match-page,
   .select-player-page,
   .select-team-page,
@@ -502,12 +511,18 @@ td {
   .add-team-page,
   .start-match-page {
     width: 550px;
-    height: 768px;
+    min-height: 808px;
     margin: auto;
   }
   .new-match-body {
-    height: 650px;
+    height: 694px;
     margin: auto;
+  }
+  .select-team-body,
+  .select-player-body,
+  .add-team-body,
+  .add-player-body {
+    height: 808px;
   }
   .new-match-body-header {
     border: 5px solid var(--secondary-color);
@@ -520,7 +535,7 @@ td {
   .bottomBtn {
     width: 40%;
   }
-  .start-match-keyboard {
+  _.start-match-keyboard {
     padding-top: 15%;
   }
   .new_match,
