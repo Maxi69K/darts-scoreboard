@@ -1,8 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-
-/**********************************************
-                Global styles
-**********************************************/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 *,
 ::before,
 ::after {
@@ -11,58 +7,72 @@
   box-sizing: border-box;
 }
 
-:root {
-  --primary-color: #fff;
-  --secondary-color: #000;
-  --background-color: #1751e2;
-}
-
 body {
   position: relative;
-  font-family: 'Poppins', sans-serif;
   min-height: 100vh;
   padding-bottom: 60px;
-  background-color: var(--background-color);
-  color: var(--primary-color);
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #ffffff;
+  background-color: #1751e2;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
   user-select: none;
+  scroll-behavior: smooth;
 }
-
-a {
+body a {
   text-decoration: none;
   color: inherit;
 }
+body ul li {
+  list-style: none;
+}
 
-/**********************************************
-                Specific styles
-**********************************************/
 .my-header {
-  padding: 10px;
-}
-.menu-content {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  width: 100%;
+  height: 60px;
+  padding-left: 10px;
 }
-.svg-container {
-  width: 20px;
-  height: 20px;
+.my-header h1 {
+  font-size: 1.2rem;
+  margin-left: 5px;
+}
+.my-header .menu-btn {
+  padding: 0 18.7px;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
 }
 .my-header svg {
   width: 20px;
   height: 20px;
   cursor: pointer;
 }
-.menu-btn {
-  padding: 0 18.7px;
-  font-size: 2rem;
-  font-weight: bold;
+.my-header .menu-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+}
+.my-header .menu-content .svg-container {
+  width: 20px;
+  height: 20px;
+}
+.my-header .info-div {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 40px 30px 40px;
+  background-color: #000000;
   cursor: pointer;
+  z-index: 2;
 }
-.menu-btn:hover {
-  color: #ccc;
-}
-.close {
+.my-header .info-div .close {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -73,42 +83,28 @@ a {
   cursor: pointer;
   z-index: 1;
 }
-
-h1 {
-  font-size: 1.2rem;
-  margin-left: 5px;
+.my-header .info-div .name-select-user {
+  cursor: crosshair;
+  color: yellow;
+  font-weight: bold;
 }
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+.my-header .info-div .sel-players:hover {
+  text-decoration: underline;
+  color: #ccc;
 }
-#home-btn {
-  cursor: pointer;
-}
-.info-div {
+.my-header .info-div-content,
+.my-header .length-div-content {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 40px 30px 40px;
-  background-color: var(--secondary-color);
-  cursor: pointer;
-  z-index: 2;
-}
-.info-div-content,
-.length-div-content {
-  position: absolute;
-  top: 70px;
+  top: 60px;
   left: 0;
   right: 0;
   padding: 50px 50px 100px;
-  background-color: var(--secondary-color);
+  background-color: #000000;
   font-size: 0.8rem;
   z-index: 4;
 }
-
-.infoContentBtn {
+.my-header .info-div-content .infoContentBtn,
+.my-header .length-div-content .infoContentBtn {
   position: absolute;
   bottom: 20px;
   right: 50px;
@@ -119,82 +115,14 @@ header {
   color: var(--primary-color);
   z-index: 5;
 }
-
-.home-page {
-  display: flex;
-  flex-wrap: wrap;
-  height: calc(133.333vw);
-}
-.home-page .content {
-  cursor: pointer;
-}
-.home-page .content:active {
-  position: relative;
-  top: 2px;
-  left: 2px;
-}
-section {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  height: 66.666%;
-}
-
-.field {
-  border-top: 5px solid var(--secondary-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  height: 50%;
-}
-.new_match,
-.menage_players {
-  border-right: 2.5px solid var(--secondary-color);
-}
-
-.resume_match,
-.menage_teams {
-  border-left: 2.5px solid var(--secondary-color);
-}
-
-.content svg {
-  display: block;
-  height: 50px;
-  margin: auto;
-}
-.content p {
-  margin-top: 30px;
+.my-header .length-div-content {
   text-align: center;
 }
-
-aside {
-  border-top: 5px solid var(--secondary-color);
-  border-bottom: 5px solid var(--secondary-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 33.333%;
-}
-
-/* New Match */
-.new-match-svg {
-  display: flex;
-  justify-content: space-evenly;
-  gap: 20px;
-}
-.new-match-svg svg {
-  cursor: pointer;
-}
-.length-div-content {
-  text-align: center;
-}
-.length-div-content label {
+.my-header .length-div-content label {
   font-size: 1.2rem;
   margin: 10px;
 }
-.length-div-content input {
+.my-header .length-div-content input {
   width: 40px;
   height: 40px;
   font-size: 1.2rem;
@@ -203,7 +131,7 @@ aside {
   text-align: center;
   border-radius: 50%;
 }
-.setBtn {
+.my-header .length-div-content .setBtn {
   display: block;
   padding: 10px 30px;
   border-radius: 5px;
@@ -211,48 +139,97 @@ aside {
   margin: 50px auto 0;
   cursor: pointer;
 }
-.setBtn:hover {
-  background-color: #ccc;
+.my-header .length-div-content .setBtn:hover {
+  background-color: #cccccc;
   font-weight: bold;
 }
-.setBtn:active {
+.my-header .length-div-content .setBtn:active {
   position: relative;
   top: 1px;
   left: 1px;
 }
-.length-div-content input:focus {
-  outline: none;
+
+.home-page {
+  display: flex;
+  flex-wrap: wrap;
+  height: 133.333vw;
 }
-.new-match-page {
+
+.home-page .content {
+  cursor: pointer;
+}
+.home-page .content:active {
+  position: relative;
+  top: 2px;
+  left: 2px;
+}
+.home-page .content svg {
+  display: block;
+  height: 50px;
+  margin: auto;
+}
+.home-page .content p {
+  margin-top: 30px;
+  text-align: center;
+}
+.home-page section {
+  display: flex;
+  flex-wrap: wrap;
   width: 100%;
-  height: 100%;
+  height: 66.666%;
 }
-.new-match-body-header {
+.home-page section .field {
+  border-top: 5px solid #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 50%;
+}
+.home-page section .new_match,
+.home-page section .menage_players {
+  border-right: 2.5px solid #000000;
+}
+.home-page section .resume_match,
+.home-page section .menage_teams {
+  border-left: 2.5px solid #000000;
+}
+.home-page aside {
+  border-top: 5px solid #000000;
+  border-bottom: 5px solid #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 33.333%;
+}
+
+.new-match-page .new-match-body-header {
   width: 100%;
   min-height: 50px;
   padding: 10px 0;
-  border-top: 5px solid var(--secondary-color);
+  border-top: 5px solid #000000;
   text-align: center;
 }
-.set-match-length {
+.new-match-page .new-match-body-header .set-match-length {
   cursor: pointer;
 }
-.set-match-length:hover {
-  color: #ccc;
+.new-match-page .new-match-body-header .set-match-length:hover {
+  color: #cccccc;
 }
-.set-match-length:active {
+.new-match-page .new-match-body-header .set-match-length:active {
   position: relative;
   top: 1px;
   left: 1px;
 }
-.new-match-body {
+.new-match-page .new-match-body {
   position: relative;
   width: 100%;
   height: 508px;
   padding: 10px;
-  background-color: var(--secondary-color);
+  background-color: #000000;
 }
-#start-match-btn {
+.new-match-page .new-match-body #start-match-btn {
   position: absolute;
   bottom: 5px;
   left: 0;
@@ -261,216 +238,178 @@ aside {
   width: 100%;
   padding: 10px 0;
   text-align: center;
-  background-color: var(--background-color);
-  color: var(--primary-color);
+  background-color: #1751e2;
+  color: #ffffff;
   cursor: pointer;
 }
-#start-match-btn:hover {
-  color: #ccc;
+.new-match-page .new-match-body #start-match-btn:hover {
+  color: #cccccc;
 }
-
-/* Select player */
-.select-player-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-.select-player-svg {
-  display: flex;
-  justify-content: space-evenly;
-  gap: 20px;
-}
-.select-player-page {
-  width: 100%;
-  height: 100%;
-}
-.select-player-body,
-.select-team-body {
-  position: relative;
-  width: 100%;
-  height: 611px;
-  padding: 10px;
-  background-color: var(--secondary-color);
-}
-.select-team-body p {
-  font-size: 0.8rem;
-}
-.selected-player-box {
-  position: relative;
-}
-.selected-player-box p {
-  color: #ccc;
-}
-.select-delete-div {
+.new-match-page .new-match-body .error {
   position: absolute;
-  top: 0;
-  right: 20px;
-  min-width: 150px;
-  min-height: 30px;
-  border: 1px solid white;
-  padding: 10px 20px;
-}
-.sel-players:hover {
-  text-decoration: underline;
-  color: #ccc;
-}
-.name-select-user {
-  cursor: crosshair;
-  color: yellow;
-  font-weight: bold;
+  top: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #dc3545;
 }
 
-/* Add player */
-.add-player-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-.add-player-svg {
-  display: flex;
-  justify-content: space-evenly;
-  gap: 20px;
-}
-.add-player-page,
-.add-team-page {
-  width: 100%;
-  height: 100%;
-}
-.add-player-body,
-.add-team-body {
+.select-player-page .select-player-body,
+.select-player-page .select-team-body {
   position: relative;
   width: 100%;
   height: 611px;
   padding: 10px;
-  background-color: var(--secondary-color);
+  background-color: #000000;
 }
-.add-player-body input {
-  border: none;
-  outline: none;
-  color: var(--primary-color);
-  background-color: var(--secondary-color);
-  font-size: 1rem;
+
+.add-player-page .add-player-body,
+.add-player-page .add-team-body,
+.add-team-page .add-player-body,
+.add-team-page .add-team-body {
+  position: relative;
+  width: 100%;
+  height: 611px;
+  padding: 10px;
+  background-color: #000000;
 }
-.add-player-body hr {
+.add-player-page .add-player-body hr,
+.add-player-page .add-team-body hr,
+.add-team-page .add-player-body hr,
+.add-team-page .add-team-body hr {
   margin-bottom: 10px;
 }
-.bottomBtn {
+.add-player-page .add-player-body input,
+.add-player-page .add-team-body input,
+.add-team-page .add-player-body input,
+.add-team-page .add-team-body input {
+  border: none;
+  outline: none;
+  color: #ffffff;
+  background-color: #000000;
+  font-size: 1rem;
+}
+.add-player-page .add-player-body .bottomBtn,
+.add-player-page .add-team-body .bottomBtn,
+.add-team-page .add-player-body .bottomBtn,
+.add-team-page .add-team-body .bottomBtn {
   position: absolute;
   bottom: 5px;
   display: block;
   width: 50%;
   padding: 10px 0;
   text-align: center;
-  color: var(--primary-color);
-  background-color: var(--background-color);
+  color: #ffffff;
+  background-color: #1751e2;
   cursor: pointer;
 }
-#cancelBtn {
+.add-player-page .add-player-body #cancelBtn,
+.add-player-page .add-team-body #cancelBtn,
+.add-team-page .add-player-body #cancelBtn,
+.add-team-page .add-team-body #cancelBtn {
   left: 0;
 }
-#okBtn {
+.add-player-page .add-player-body #okBtn,
+.add-player-page .add-team-body #okBtn,
+.add-team-page .add-player-body #okBtn,
+.add-team-page .add-team-body #okBtn {
   right: 0;
 }
-#errBox {
-  color: red;
+
+.select-team-page .select-team-body {
+  position: relative;
+  width: 100%;
+  height: 611px;
+  padding: 10px;
+  background-color: #000000;
 }
 
-/* Start match page*/
-#start-match-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.start-match-svg {
-  display: flex;
-  justify-content: space-evenly;
-  gap: 20px;
-}
 .start-match-page {
   width: 100%;
   min-height: 611px;
-  background-color: var(--secondary-color);
+  background-color: #000000;
 }
-.start-match-body {
+.start-match-page .start-match-body {
   position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   width: 100%;
   padding: 10px;
-  background-color: var(--secondary-color);
+  background-color: #000000;
 }
-.player-box {
+.start-match-page .start-match-body .player-box {
   min-width: 48%;
   height: 175px;
   text-align: center;
   background-color: #222222;
 }
-
-.player-name-box {
+.start-match-page .start-match-body .player-box .player-name-box {
   width: 100%;
   padding: 5px 0;
   border: 1px solid #ccc;
   background-color: #141414;
 }
-.current-player .player-name-box {
-  color: greenyellow;
-  border-color: greenyellow;
-}
-.legs-box {
+.start-match-page .start-match-body .player-box .legs-box {
   padding: 5px 0;
 }
-.player-score-box {
+.start-match-page .start-match-body .player-box .player-score-box {
   width: 90%;
   margin: auto;
   padding: 5px 0;
   border: 1px solid #000;
   border-radius: 10px;
-  background-color: var(--background-color);
+  background-color: #1751e2;
   font-size: 2rem;
 }
-.to-play-box {
+.start-match-page .start-match-body .player-box .to-play-box {
   padding: 5px 0;
 }
-
-/* Keyboard */
-.start-match-keyboard {
-  width: 100%;
-  z-index: 5;
+.start-match-page .start-match-body .current-player .player-name-box {
+  color: greenyellow;
+  border-color: greenyellow;
 }
-.start-match-keyboard table {
+.start-match-page .start-match-keyboard {
+  position: relative;
+  width: 100%;
+}
+.start-match-page .start-match-keyboard table,
+.start-match-page .start-match-keyboard td {
+  border: 5px solid #000000;
+  border-collapse: collapse;
+  background-color: #1751e2;
+}
+.start-match-page .start-match-keyboard table {
   max-width: 500px;
   height: 200px;
   margin: auto;
   text-align: center;
   font-size: 1.5rem;
 }
-.start-match-keyboard table,
-td {
-  border: 5px solid var(--secondary-color);
-  border-collapse: collapse;
-  background-color: var(--background-color);
-}
-.start-match-keyboard table td {
+.start-match-page .start-match-keyboard table td {
   width: 150px;
   cursor: pointer;
 }
-.start-match-keyboard table td:active {
+.start-match-page .start-match-keyboard table td:hover {
+  color: #000000;
+}
+.start-match-page .start-match-keyboard table td:active {
   position: relative;
   top: 1px;
   left: 1px;
 }
-.start-match-keyboard table td:hover {
-  color: var(--secondary-color);
+
+.add-team-page .selected-player-box {
+  position: relative;
 }
-/* New Team */
-.add-team-body label {
+.add-team-page .selected-player-box p {
+  color: #ffffff;
+}
+.add-team-page label {
   font-weight: bold;
   cursor: pointer;
 }
-.add-team-body input {
+.add-team-page input {
   position: absolute;
   top: 15px;
   right: 15px;
@@ -480,18 +419,24 @@ td {
   cursor: pointer;
 }
 
-/* Footer */
-#myFooter {
+.my-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 60px;
-  line-height: 60px;
   text-align: center;
+  color: #ffffff;
+  background-color: #1751e2;
 }
-/*********************************************
-               @media Queries
-*********************************************/
+.my-footer span {
+  text-shadow: 1px 1px 1px #ffffff;
+}
+.my-footer span:hover {
+  color: #198754;
+}
 
 @media all and (min-width: 576px) {
   .my-header {
@@ -515,43 +460,39 @@ td {
     margin: auto;
   }
   .new-match-body {
-    height: 694px;
+    height: 694px !important;
     margin: auto;
   }
   .select-team-body,
   .select-player-body,
   .add-team-body,
   .add-player-body {
-    height: 808px;
+    height: 808px !important;
   }
   .new-match-body-header {
-    border: 5px solid var(--secondary-color);
+    border: 5px solid #000000;
     margin: 0 auto 5px;
   }
   #start-match-btn {
-    width: 90%;
+    width: 90% !important;
     margin: 0 auto 5px;
   }
   .bottomBtn {
-    width: 40%;
-  }
-  _.start-match-keyboard {
-    padding-top: 15%;
+    width: 40% !important;
   }
   .new_match,
   .menage_players {
-    border-left: 5px solid var(--secondary-color);
+    border-left: 5px solid #000000;
   }
-
   .resume_match,
   .menage_teams {
-    border-right: 5px solid var(--secondary-color);
+    border-right: 5px solid #000000;
   }
   aside {
-    border-right: 5px solid var(--secondary-color);
-    border-left: 5px solid var(--secondary-color);
+    border-right: 5px solid #000000;
+    border-left: 5px solid #000000;
   }
   .length-div-content input {
-    text-align: right;
+    text-align: right !important;
   }
 }

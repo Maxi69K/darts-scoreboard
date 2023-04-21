@@ -221,10 +221,8 @@ function newMatch() {
       </div>
     </div>
   </main>
-  <footer id="myFooter">
-    <small>
-      &copy; 2023 Darts Scoreboard by <a target="_blank" href="https://webdizajnmaxi.eu.org">Maxi</a>. All Rights Reserved.
-    </small>
+  <footer class="my-footer">
+    <small>&copy; 2023 Darts Scoreboard by <a target="_blank" href="https://webdizajnmaxi.eu.org"><span>Maxi</span></a>. All Rights Reserved.</small>
   </footer>
   `
   myBody.innerHTML = newMatchHeaderContent
@@ -358,12 +356,8 @@ function selectPlayerFunction() {
         <div class="select-player-body"></div>
       </div>
     </main>
-    <footer id="myFooter">
-      <small
-        >&copy; 2023 Darts Scoreboard by
-        <a target="_blank" href="https://webdizajnmaxi.eu.org">Maxi</a>. All Rights
-        Reserved.</small
-      >
+    <footer class="my-footer">
+      <small>&copy; 2023 Darts Scoreboard by <a target="_blank" href="https://webdizajnmaxi.eu.org"><span>Maxi</span></a>. All Rights Reserved.</small>
     </footer>
     `
 
@@ -500,12 +494,8 @@ function addPlayerFunction() {
       </div>
     </div>
     </main>
-    <footer id="myFooter">
-      <small
-        >&copy; 2023 Darts Scoreboard by
-        <a target="_blank" href="https://webdizajnmaxi.eu.org">Maxi</a>. All Rights
-        Reserved.</small
-      >
+    <footer class="my-footer">
+      <small>&copy; 2023 Darts Scoreboard by <a target="_blank" href="https://webdizajnmaxi.eu.org"><span>Maxi</span></a>. All Rights Reserved.</small>
     </footer>
     `
   myBody.innerHTML = addPlayerPageContent
@@ -626,12 +616,8 @@ function startMatchBtnFunction() {
       </div>
     </div>
     </main>
-    <footer id="myFooter">
-      <small
-        >&copy; 2023 Darts Scoreboard by
-        <a target="_blank" href="https://webdizajnmaxi.eu.org">Maxi</a>. All Rights
-        Reserved.</small
-      >
+    <footer class="my-footer">
+      <small>&copy; 2023 Darts Scoreboard by <a target="_blank" href="https://webdizajnmaxi.eu.org"><span>Maxi</span></a>. All Rights Reserved.</small>
     </footer>
     `
     myBody.innerHTML = startMatchContent
@@ -698,7 +684,7 @@ function startMatchBtnFunction() {
       startMatchBody.innerHTML += playerBox
     })
   } else {
-    newMatchBody.innerHTML = 'Please select players first!'
+    newMatchBody.innerHTML += `<p class="error">Please select players first!</p>`
   }
 
   // Players in the game
@@ -893,12 +879,8 @@ function selectTeamFunction() {
       <div class="select-team-body"></div>
     </div>
     </main>
-    <footer id="myFooter">
-      <small
-        >&copy; 2023 Darts Scoreboard by
-        <a target="_blank" href="https://webdizajnmaxi.eu.org">Maxi</a>. All Rights
-        Reserved.</small
-      >
+    <footer class="my-footer">
+      <small>&copy; 2023 Darts Scoreboard by <a target="_blank" href="https://webdizajnmaxi.eu.org"><span>Maxi</span></a>. All Rights Reserved.</small>
     </footer>
     `
   myBody.innerHTML = selectTeamPageContent
@@ -990,12 +972,8 @@ function addTeamFunction() {
         </div>
       </div>
     </main>
-    <footer id="myFooter">
-      <small
-        >&copy; 2023 Darts Scoreboard by
-        <a target="_blank" href="https://webdizajnmaxi.eu.org">Maxi</a>. All Rights
-        Reserved.</small
-      >
+    <footer class="my-footer">
+      <small>&copy; 2023 Darts Scoreboard by <a target="_blank" href="https://webdizajnmaxi.eu.org"><span>Maxi</span></a>. All Rights Reserved.</small>
     </footer>
     `
   myBody.innerHTML = addTeamPageContent

@@ -1,0 +1,59 @@
+@media all and (min-width: $breakpoint-576) {
+  .my-header {
+    position: relative;
+    width: 550px;
+    margin: auto;
+  }
+  .home-page {
+    width: 550px;
+    height: 808px;
+    margin: auto;
+  }
+  .new-match-page,
+  .select-player-page,
+  .select-team-page,
+  .add-player-page,
+  .add-team-page,
+  .start-match-page {
+    width: 550px;
+    min-height: 808px;
+    margin: auto;
+  }
+  .new-match-body {
+    height: 694px !important;
+    margin: auto;
+  }
+  .select-team-body,
+  .select-player-body,
+  .add-team-body,
+  .add-player-body {
+    height: 808px !important;
+  }
+  .new-match-body-header {
+    border: 5px solid $black;
+    margin: 0 auto 5px;
+  }
+  #start-match-btn {
+    width: 90% !important;
+    margin: 0 auto 5px;
+  }
+  .bottomBtn {
+    width: 40% !important;
+  }
+  .new_match,
+  .menage_players {
+    border-left: 5px solid $black;
+  }
+
+  .resume_match,
+  .menage_teams {
+    border-right: 5px solid $black;
+  }
+  aside {
+    border-right: 5px solid $black;
+    border-left: 5px solid $black;
+  }
+  .length-div-content input {
+    text-align: right!important;
+  }
+}
